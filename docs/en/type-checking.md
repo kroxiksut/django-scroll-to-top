@@ -1,6 +1,6 @@
 # Type checking (Pyright)
 
-- [Back to documentation index](./README.md)
+- [Back to documentation index](../README.md)
 - [Testing the package](./testing.md)
 
 The package is typed (`py.typed` is shipped, and the `Typing :: Typed` classifier

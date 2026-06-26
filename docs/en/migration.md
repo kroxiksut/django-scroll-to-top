@@ -1,6 +1,6 @@
 # Migration and upgrade notes
 
-- [Back to documentation index](./README.md)
+- [Back to documentation index](../README.md)
 - [Admin: profiles, revisions, publish and rollback](./operations-admin.md)
 
 The package ships its own Django migrations (`migrations/0001_initial` onward).

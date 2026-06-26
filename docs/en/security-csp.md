@@ -1,6 +1,6 @@
 # Security, SVG sanitization, and CSP
 
-- [Back to documentation index](./README.md)
+- [Back to documentation index](../README.md)
 - [Security policy and vulnerability reporting](../../SECURITY.md)
 
 ## Principles

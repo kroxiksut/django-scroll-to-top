@@ -1,6 +1,6 @@
 # Quick start
 
-- [Back to documentation index](./README.md)
+- [Back to documentation index](../README.md)
 - [Overview and current status](./overview.md)
 
 This guide takes `django-scroll-to-top` from an empty install to a rendered

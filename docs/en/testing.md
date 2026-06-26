@@ -1,6 +1,6 @@
 # Testing the package
 
-- [Back to documentation index](./README.md)
+- [Back to documentation index](../README.md)
 - [Type checking (Pyright)](./type-checking.md)
 
 The suite uses `pytest` with `pytest-django`. Tests configure Django themselves

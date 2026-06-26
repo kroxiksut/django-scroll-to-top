@@ -1,6 +1,6 @@
 # Diagnostics and management commands
 
-- [Back to documentation index](./README.md)
+- [Back to documentation index](../README.md)
 - [Configuration (settings and infrastructure)](./configuration.md)
 
 ## System checks

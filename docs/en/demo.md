@@ -1,6 +1,6 @@
 # Demo project
 
-- [Back to documentation index](./README.md)
+- [Back to documentation index](../README.md)
 - [Behavior and runtime](./runtime.md)
 
 A standalone Django project for local demo and manual testing lives under

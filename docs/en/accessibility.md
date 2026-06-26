@@ -1,6 +1,6 @@
 # Accessibility
 
-- [Back to documentation index](./README.md)
+- [Back to documentation index](../README.md)
 - [Behavior and runtime](./runtime.md)
 
 The control targets WCAG 2.2 AA within its scope. The structural contract below

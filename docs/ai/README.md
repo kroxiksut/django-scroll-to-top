@@ -6,7 +6,7 @@ agent that is wiring the package into a **downstream Django project**.
 
 These documents are intentionally **English-only** to keep prompts, keywords, and
 integration contracts consistent for AI tooling. The human documentation is
-bilingual ([English](../en/README.md) / [Russian](../ru/README.md)); these guides
+bilingual ([English](../README.md) / [Russian](../README.ru.md)); these guides
 are not translated.
 
 ## How to connect these to a modern AI
@@ -72,5 +72,5 @@ switches). See [type-checking](../en/type-checking.md).
 
 ## See also
 
-- Human docs: [English](../en/README.md) · [Russian](../ru/README.md)
+- Human docs: [English](../README.md) · [Russian](../README.ru.md)
 - [Architecture and package boundaries](../../ARCHITECTURE.md)

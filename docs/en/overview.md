@@ -1,6 +1,6 @@
 # Overview and current status
 
-- [Back to documentation index](./README.md)
+- [Back to documentation index](../README.md)
 - [Project overview (root README)](../../README.md)
 
 ## Purpose

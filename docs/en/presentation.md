@@ -1,6 +1,6 @@
 # Presentation: templates, colors, sizing, and icons
 
-- [Back to documentation index](./README.md)
+- [Back to documentation index](../README.md)
 - [Admin: profiles, revisions, publish and rollback](./operations-admin.md)
 
 Appearance is built from controlled package CSS classes selected by revision

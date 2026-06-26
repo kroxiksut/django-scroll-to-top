@@ -1,6 +1,6 @@
 # Admin: profiles, revisions, publish and rollback
 
-- [Back to documentation index](./README.md)
+- [Back to documentation index](../README.md)
 - [Configuration (settings and infrastructure)](./configuration.md)
 
 All normal appearance and behavior is configured in Django Admin. The admin

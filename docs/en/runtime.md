@@ -1,6 +1,6 @@
 # Behavior and runtime
 
-- [Back to documentation index](./README.md)
+- [Back to documentation index](../README.md)
 - [Presentation: templates, colors, sizing, and icons](./presentation.md)
 
 The browser runtime ships as vanilla ES5 (`scroll-to-top.js`, reproducibly
@@ -41,6 +41,32 @@ are never inspected.
 
 ![Collision configuration: policy, selectors, gap, and fallback corners](../assets/en/12-collision-avoidance.png)
 ![A cookie-banner collision shown in the live preview](../assets/en/18-cookie-banner-collision.png)
+
+### Example: the django-cookies-152fz cookie banner
+
+The `django-cookies-152fz` banner and its launcher pin to the bottom-right
+corner — the same corner as a default control — so the two overlap until the
+control is told about the banner:
+
+![The cookie banner overlapping the scroll-to-top control](../assets/shared/19.1-cookie-overlap-before.png)
+
+Fix it entirely in the admin, with no code. Open the published revision, and in
+the **Collision avoidance** section set **Obstacle selectors** to the banner's
+launcher and panel (one selector per line), keep a moving **Collision policy**
+(`shift`), and save:
+
+```text
+[data-cookie-banner-launcher]
+[data-cookie-banner-panel]
+```
+
+Editing the published revision updates the live site immediately. The control now
+rides up above the cookie launcher:
+
+![The control lifted above the cookie launcher after adding the selectors](../assets/shared/19.2-obstacle-selectors-after.png)
+
+The full write-up, including the alternatives, is in
+[Collision integration with django-cookies-152fz](../integration/django-cookies-152fz.md).
 
 ## User dismissal
 

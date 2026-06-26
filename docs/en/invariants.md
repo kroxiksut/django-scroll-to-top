@@ -1,6 +1,6 @@
 # Key invariants
 
-- [Back to documentation index](./README.md)
+- [Back to documentation index](../README.md)
 - [Architecture and package boundaries](../../ARCHITECTURE.md)
 
 These invariants must hold while developing the package. They are the canonical

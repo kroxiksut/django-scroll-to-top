@@ -1,6 +1,6 @@
 # Configuration (settings and infrastructure)
 
-- [Back to documentation index](./README.md)
+- [Back to documentation index](../README.md)
 - [Quick start](./quickstart.md)
 
 Django settings own **installation and infrastructure** choices only. Normal
