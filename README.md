@@ -10,8 +10,11 @@
 
 <p align="center">
   <a href="https://pypi.org/project/django-scroll-to-top/"><img src="https://img.shields.io/pypi/v/django-scroll-to-top.svg" alt="PyPI version"></a>
-  <a href="https://pypi.org/project/django-scroll-to-top/"><img src="https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue.svg" alt="Python versions"></a>
+  <a href="https://pypi.org/project/django-scroll-to-top/"><img src="https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13%20%7C%203.14-blue.svg" alt="Python versions"></a>
   <a href="https://www.djangoproject.com/"><img src="https://img.shields.io/badge/Django-4.2%20LTS%20%7C%205.x%20%7C%206.0-092E20.svg?logo=django&logoColor=white" alt="Django versions"></a>
+</p>
+
+<p align="center">
   <a href="https://github.com/kroxiksut/django-scroll-to-top/actions/workflows/ci.yml"><img src="https://github.com/kroxiksut/django-scroll-to-top/actions/workflows/ci.yml/badge.svg" alt="CI status"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
   <a href="https://github.com/astral-sh/ruff"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json" alt="Linted with Ruff"></a>
@@ -236,6 +239,17 @@ templates stored in the database:
   a backdrop-blur fallback), and `gradient` (two configured colors and an angle);
 - shadow presets (`none`/`small`/`medium`/`large`), opacity, border width,
   focus-ring width/offset, and a backdrop-blur amount for the glass variant.
+
+The six fill variants, shown on the default circle shape:
+
+| Fill | Preview | Description |
+| --- | :---: | --- |
+| `solid` | <img src="https://raw.githubusercontent.com/kroxiksut/django-scroll-to-top/main/docs/assets/shared/7.2-fill-solid.png" alt="Solid fill" width="96"> | Opaque background |
+| `outline` | <img src="https://raw.githubusercontent.com/kroxiksut/django-scroll-to-top/main/docs/assets/shared/7.2-fill-outline.png" alt="Outline fill" width="96"> | Border only, no fill |
+| `soft` | <img src="https://raw.githubusercontent.com/kroxiksut/django-scroll-to-top/main/docs/assets/shared/7.2-fill-soft.png" alt="Soft fill" width="96"> | Soft translucent background |
+| `ghost` | <img src="https://raw.githubusercontent.com/kroxiksut/django-scroll-to-top/main/docs/assets/shared/7.2-fill-ghost.png" alt="Ghost fill" width="96"> | Transparent; background appears on hover |
+| `glass` | <img src="https://raw.githubusercontent.com/kroxiksut/django-scroll-to-top/main/docs/assets/shared/7.2-fill-glass.png" alt="Glass fill" width="96"> | Glassy: translucent with a backdrop blur |
+| `gradient` | <img src="https://raw.githubusercontent.com/kroxiksut/django-scroll-to-top/main/docs/assets/shared/7.2-fill-gradient.png" alt="Gradient fill" width="96"> | Gradient between two configured colors |
 
 Unknown shapes, fills, or shadows fall back to safe defaults, forced-colors mode
 neutralizes every variant, and projects can still override the package template
