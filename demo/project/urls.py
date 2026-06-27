@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from django.apps import apps
 from django.contrib import admin
 from django.urls import include, path
 
@@ -9,7 +10,6 @@ urlpatterns = [
     path("", home, name="home"),
     path("obstacles/", obstacles, name="obstacles"),
     path("collections/<slug:slug>/", collection_detail, name="collection-detail"),
-    path("", include("django_cookies_152fz.urls")),
     path("admin/", admin.site.urls),
     path("i18n/", include("django.conf.urls.i18n")),
     # Versioned same-origin stylesheet endpoint (strict-CSP color transport).
@@ -21,3 +21,8 @@ urlpatterns = [
         ),
     ),
 ]
+
+# Optional: cookie banner routes are only added when django-cookies-152fz is
+# installed, so the demo runs without it.
+if apps.is_installed("django_cookies_152fz"):
+    urlpatterns.append(path("", include("django_cookies_152fz.urls")))
