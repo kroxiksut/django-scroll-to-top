@@ -1,0 +1,40 @@
+{% extends "demo/base.html" %}
+
+{% block title %}Demo Library Home{% endblock %}
+{% block header_title %}Demo Library{% endblock %}
+{% block header_summary %}
+  A long, scrollable set of original notes and collections for the public demo
+  site.
+{% endblock %}
+
+{% block content %}
+  <section class="demo-panel">
+    <h2 class="demo-section-title">Collections</h2>
+    <p class="demo-section-copy">
+      Each collection below is seeded into the database so the admin has real
+      records to manage and the public page has enough text to scroll naturally.
+    </p>
+    <div class="demo-grid">
+      {% for collection in collections %}
+        <article class="demo-card">
+          <span class="demo-meta">Collection {{ forloop.counter }}</span>
+          <h3><a href="{% url 'collection-detail' collection.slug %}">{{ collection.title }}</a></h3>
+          <p class="demo-body">{{ collection.summary }}</p>
+          <p class="demo-body">
+            {{ collection.notes }}
+          </p>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="demo-panel">
+    <h2 class="demo-section-title">Why this page is long</h2>
+    <p class="demo-section-copy">
+      The page is intentionally built from full sentences and distinct sections
+      rather than placeholder text so it feels like a real site and still gives
+      the scroll control a meaningful workout later.
+    </p>
+  </section>
+{% endblock %}
+

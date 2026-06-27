@@ -1,0 +1,42 @@
+{% extends "admin/base.html" %}
+{% load i18n scroll_to_top static %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'demo/admin-language-switcher.css' %}">
+{% endblock %}
+
+{% block branding %}
+  {{ block.super }}
+  <div class="demo-admin-language-switcher">
+    <form action="{% url 'set_language' %}" method="post" class="demo-admin-language-switcher__form">
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ request.get_full_path|urlencode }}">
+      <p class="demo-admin-language-switcher__label">{% trans "Admin language" %}</p>
+      <div class="demo-admin-language-switcher__group" role="group" aria-label="{% trans 'Admin language' %}">
+        <button
+          type="submit"
+          name="language"
+          value="en"
+          class="demo-admin-language-switcher__button{% if request.LANGUAGE_CODE|slice:':2' == 'en' %} demo-admin-language-switcher__button--active{% endif %}"
+        >English</button>
+        <button
+          type="submit"
+          name="language"
+          value="ru"
+          class="demo-admin-language-switcher__button{% if request.LANGUAGE_CODE|slice:':2' == 'ru' %} demo-admin-language-switcher__button--active{% endif %}"
+        >Русский</button>
+      </div>
+      <p class="demo-admin-language-switcher__hint">
+        {% blocktrans trimmed with code=request.LANGUAGE_CODE %}
+          Current locale: {{ code }}
+        {% endblocktrans %}
+      </p>
+    </form>
+  </div>
+{% endblock %}
+
+{% block footer %}
+  {{ block.super }}
+  {% scroll_to_top scope="admin" %}
+{% endblock %}

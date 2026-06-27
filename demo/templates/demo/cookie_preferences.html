@@ -1,0 +1,25 @@
+{% extends "demo/base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "Cookie preferences" %}{% endblock %}
+{% block header_title %}{% trans "Cookie preferences" %}{% endblock %}
+{% block header_summary %}
+  {% trans "Review the cookie policy, required categories, and optional choices in the same visual language as the rest of the demo site." %}
+{% endblock %}
+
+{% block cookie_banner %}{% endblock %}
+
+{% block head_extra %}
+  <link rel="stylesheet" href="{% static 'django_cookies_152fz/cookie_banner.css' %}">
+  <link rel="stylesheet" href="{% static 'demo/cookie-module.css' %}">
+{% endblock %}
+
+{% block content %}
+  <section class="demo-panel demo-cookie-page">
+    {% include "django_cookies_152fz/includes/cookie_preferences_content.html" %}
+  </section>
+{% endblock %}
+
+{% block body_end %}
+  <script src="{% static 'django_cookies_152fz/cookie_banner.js' %}" defer></script>
+{% endblock %}

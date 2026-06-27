@@ -1,0 +1,264 @@
+{% load scroll_to_top cookies_tags static %}<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Demo Library{% endblock %}</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f1e8;
+      --panel: rgba(255, 255, 255, 0.84);
+      --panel-strong: #fffaf2;
+      --ink: #1f2937;
+      --muted: #5b6472;
+      --line: rgba(31, 41, 55, 0.12);
+      --accent: #0f766e;
+      --accent-soft: #d9f0ec;
+      --shadow: 0 18px 50px rgba(44, 36, 18, 0.12);
+      --radius: 26px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Georgia", "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.16), transparent 28%),
+        radial-gradient(circle at top right, rgba(217, 240, 236, 0.8), transparent 24%),
+        linear-gradient(180deg, #faf7f0 0%, var(--bg) 100%);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover,
+    a:focus-visible {
+      text-decoration: underline;
+    }
+
+    .demo-shell {
+      width: min(1140px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 72px;
+    }
+
+    .demo-header,
+    .demo-footer,
+    .demo-panel {
+      background: var(--panel);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+    }
+
+    .demo-header {
+      padding: 28px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .demo-header::after {
+      content: "";
+      position: absolute;
+      inset: auto -8% -30% auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(15, 118, 110, 0.08);
+      pointer-events: none;
+    }
+
+    .demo-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.76rem;
+      color: var(--accent);
+      margin: 0 0 10px;
+      font-weight: 700;
+    }
+
+    .demo-title {
+      margin: 0;
+      font-size: clamp(2.6rem, 6vw, 4.6rem);
+      line-height: 0.95;
+      max-width: 10ch;
+    }
+
+    .demo-summary {
+      margin: 16px 0 0;
+      max-width: 72ch;
+      font-size: 1.08rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .demo-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .demo-nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.7rem 1rem;
+      border-radius: 999px;
+      background: var(--panel-strong);
+      border: 1px solid var(--line);
+      font-size: 0.96rem;
+      font-weight: 700;
+    }
+
+    .demo-content {
+      display: grid;
+      gap: 20px;
+    }
+
+    .demo-panel {
+      padding: 24px;
+    }
+
+    .demo-section-title {
+      margin: 0 0 10px;
+      font-size: 1.45rem;
+    }
+
+    .demo-section-copy {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .demo-grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      margin-top: 18px;
+    }
+
+    .demo-card {
+      padding: 20px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid var(--line);
+    }
+
+    .demo-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.22rem;
+    }
+
+    .demo-meta {
+      display: inline-flex;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.84rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .demo-body {
+      margin: 0;
+      line-height: 1.8;
+      color: #2f3744;
+    }
+
+    .demo-footer {
+      margin-top: 24px;
+      padding: 20px 24px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .demo-article + .demo-article {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .demo-article h3 {
+      margin: 0 0 10px;
+      font-size: 1.35rem;
+    }
+
+    .demo-article p {
+      margin: 0 0 1rem;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 720px) {
+      .demo-shell {
+        width: min(100% - 18px, 1140px);
+        padding: 12px 0 32px;
+      }
+
+      .demo-header,
+      .demo-panel,
+      .demo-footer {
+        border-radius: 20px;
+      }
+
+      .demo-header {
+        padding: 22px;
+      }
+
+      .demo-panel {
+        padding: 18px;
+      }
+    }
+  </style>
+  {% block head_extra %}{% endblock %}
+</head>
+<body>
+  <div class="demo-shell">
+    <header class="demo-header">
+      <p class="demo-kicker">Local Demo</p>
+      <h1 class="demo-title">{% block header_title %}Demo Library{% endblock %}</h1>
+      <p class="demo-summary">
+        {% block header_summary %}
+          An original English reading surface for local scrolling and Django
+          admin walkthroughs.
+        {% endblock %}
+      </p>
+      <nav class="demo-nav" aria-label="Primary">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'obstacles' %}">Obstacles</a>
+        <a href="{% url 'django_cookies_152fz:cookie_preferences' %}">Cookies</a>
+        <a href="/admin/">Admin</a>
+      </nav>
+    </header>
+
+    <main class="demo-content">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="demo-footer">
+      This demo site is intentionally self-contained. The public side stays
+      English-only, and the admin can be viewed in English or Russian through
+      Django's built-in localization.
+    </footer>
+  </div>
+
+  {% block body_end %}{% endblock %}
+
+  {% block cookie_banner %}
+    {% render_cookie_banner %}
+  {% endblock %}
+
+  {# Single public site integration point: one template tag. #}
+  {% scroll_to_top %}
+</body>
+</html>

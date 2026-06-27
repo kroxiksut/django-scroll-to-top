@@ -1,0 +1,206 @@
+{% extends "demo/base.html" %}
+{% load static %}
+
+{% block title %}Obstacles &amp; cookie banner demo{% endblock %}
+{% block header_title %}Obstacles{% endblock %}
+{% block header_summary %}
+  A scenario page for the collision engine: a cookie banner pinned bottom-right,
+  a chat widget bottom-left, a toast stack, and a sticky mobile navigation bar.
+  Scroll down, then open, collapse, and close the cookie banner to watch the
+  scroll-to-top control move out of the way and return.
+{% endblock %}
+
+{% block content %}
+  <style>
+    .demo-obstacle {
+      position: fixed;
+      z-index: 50;
+      font-family: system-ui, sans-serif;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.25);
+    }
+    .demo-cookie {
+      right: 24px;
+      bottom: 24px;
+      width: 320px;
+      max-width: calc(100vw - 48px);
+      padding: 18px;
+      border-radius: 16px;
+      background: #0f172a;
+      color: #f8fafc;
+    }
+    .demo-cookie[hidden] { display: none; }
+    .demo-cookie.is-collapsed { width: 180px; padding: 12px; }
+    .demo-cookie__actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+    .demo-cookie button,
+    .demo-controls button {
+      cursor: pointer;
+      border: 0;
+      border-radius: 999px;
+      padding: 0.4rem 0.8rem;
+      font-weight: 700;
+      background: #38bdf8;
+      color: #0f172a;
+    }
+    .demo-launcher {
+      right: 24px;
+      bottom: 24px;
+      padding: 0.7rem 1rem;
+      border-radius: 999px;
+      border: 0;
+      background: #0f172a;
+      color: #f8fafc;
+      cursor: pointer;
+    }
+    .demo-launcher[hidden] { display: none; }
+    .demo-chat {
+      left: 24px;
+      bottom: 24px;
+      width: 240px;
+      padding: 14px;
+      border-radius: 16px;
+      background: #1e293b;
+      color: #e2e8f0;
+    }
+    .demo-toast {
+      right: 24px;
+      bottom: 120px;
+      width: 260px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: #166534;
+      color: #f0fdf4;
+    }
+    .demo-sticky-nav {
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: none;
+      gap: 12px;
+      justify-content: space-around;
+      padding: 12px;
+      background: #111827;
+      color: #f9fafb;
+    }
+    @media (max-width: 720px) {
+      .demo-sticky-nav { display: flex; }
+    }
+    .demo-controls { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+    .demo-tall { min-height: 220vh; }
+  </style>
+
+  <section class="demo-panel demo-tall">
+    <h2 class="demo-section-title">Live obstacle controls</h2>
+    <p class="demo-section-copy">
+      The cookie banner and launcher use the optional obstacle adapter via the
+      bundled <code>django-cookies-152fz</code> preset. The chat widget, toast,
+      and sticky navigation opt in through the generic
+      <code>data-scroll-top-obstacle</code> marker. Nothing here is a hard
+      dependency of the package.
+    </p>
+    <div class="demo-controls">
+      <button type="button" data-demo-open>Open cookie banner</button>
+      <button type="button" data-demo-collapse>Collapse banner</button>
+      <button type="button" data-demo-close>Close banner</button>
+      <button type="button" data-demo-debug>Toggle collision debug</button>
+    </div>
+    <p class="demo-section-copy" style="margin-top:16px;">
+      Resize the window below 720px to reveal the sticky bottom navigation as an
+      additional simultaneous obstacle.
+    </p>
+  </section>
+
+  <section class="demo-panel">
+    <h2 class="demo-section-title">Filler</h2>
+    <p class="demo-section-copy">
+      This section exists only to make the page tall enough for the
+      scroll-to-top control to appear after scrolling.
+    </p>
+  </section>
+
+  <!-- Cookie banner panel (django-cookies-152fz-style markup). -->
+  <aside class="demo-obstacle demo-cookie" data-cookie-banner-panel aria-label="Cookie banner">
+    <strong>We use cookies</strong>
+    <p style="margin:8px 0 0;">A demo cookie banner pinned to the bottom-right corner.</p>
+    <div class="demo-cookie__actions">
+      <button type="button" data-demo-close>Accept</button>
+      <button type="button" data-demo-collapse>Later</button>
+    </div>
+  </aside>
+
+  <!-- Compact launcher shown after the banner is closed. -->
+  <button
+    type="button"
+    class="demo-obstacle demo-launcher"
+    data-cookie-banner-launcher
+    hidden
+    data-demo-open
+  >Cookie settings</button>
+
+  <!-- Generic obstacles via the shared marker. -->
+  <aside class="demo-obstacle demo-chat" data-scroll-top-obstacle data-scroll-top-obstacle-priority="2" aria-label="Chat widget">
+    Chat widget
+  </aside>
+  <div class="demo-obstacle demo-toast" data-scroll-top-obstacle aria-hidden="true">
+    Toast notification
+  </div>
+  <nav class="demo-obstacle demo-sticky-nav" data-scroll-top-obstacle aria-label="Mobile navigation">
+    <span>Home</span><span>Browse</span><span>Account</span>
+  </nav>
+{% endblock %}
+
+{% block body_end %}
+  <script src="{% static 'django_scroll_to_top/obstacle-adapter.min.js' %}" defer></script>
+  <script>
+    (function () {
+      function ready(fn) {
+        if (document.readyState !== "loading") { fn(); }
+        else { document.addEventListener("DOMContentLoaded", fn, { once: true }); }
+      }
+      ready(function () {
+        if (window.djsttObstacleAdapter) {
+          window.djsttObstacleAdapter.register(
+            window.djsttObstacleAdapter.presets.djangoCookies152fz
+          );
+        }
+        var banner = document.querySelector("[data-cookie-banner-panel]");
+        var launcher = document.querySelector("[data-cookie-banner-launcher]");
+        // Mirror the real django-cookies-152fz event names so the bundled
+        // obstacle-adapter preset re-measures placement on each change.
+        function dispatch(name) {
+          document.dispatchEvent(new CustomEvent(name, { bubbles: true }));
+        }
+        function open() {
+          banner.hidden = false;
+          banner.classList.remove("is-collapsed");
+          if (launcher) { launcher.hidden = true; }
+          dispatch("dz152fz:cookie-banner:opened");
+        }
+        function collapse() {
+          banner.classList.toggle("is-collapsed");
+          dispatch("dz152fz:cookie-banner:custom-opened");
+        }
+        function close() {
+          banner.hidden = true;
+          if (launcher) { launcher.hidden = false; }
+          dispatch("dz152fz:cookie-banner:closed");
+        }
+        document.querySelectorAll("[data-demo-open]").forEach(function (el) {
+          el.addEventListener("click", open);
+        });
+        document.querySelectorAll("[data-demo-collapse]").forEach(function (el) {
+          el.addEventListener("click", collapse);
+        });
+        document.querySelectorAll("[data-demo-close]").forEach(function (el) {
+          el.addEventListener("click", close);
+        });
+        var debugOn = false;
+        document.querySelectorAll("[data-demo-debug]").forEach(function (el) {
+          el.addEventListener("click", function () {
+            debugOn = !debugOn;
+            if (window.djstt && window.djstt.debug) { window.djstt.debug(debugOn); }
+          });
+        });
+      });
+    })();
+  </script>
+{% endblock %}

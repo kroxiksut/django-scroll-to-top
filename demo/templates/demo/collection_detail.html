@@ -1,0 +1,28 @@
+{% extends "demo/base.html" %}
+
+{% block title %}{{ collection.title }} - Demo Library{% endblock %}
+{% block header_title %}{{ collection.title }}{% endblock %}
+{% block header_summary %}
+  {{ collection.summary }}
+{% endblock %}
+
+{% block content %}
+  <section class="demo-panel">
+    <h2 class="demo-section-title">Collection notes</h2>
+    <p class="demo-section-copy">{{ collection.notes }}</p>
+  </section>
+
+  <section class="demo-panel">
+    <h2 class="demo-section-title">Entries</h2>
+    {% for entry in collection.entries.all %}
+      <article class="demo-article">
+        <span class="demo-meta">{% if entry.featured %}Featured{% else %}Entry{% endif %}</span>
+        <h3>{{ entry.title }}</h3>
+        <p class="demo-body">{{ entry.excerpt }}</p>
+        {% for paragraph in entry.paragraphs %}
+          <p>{{ paragraph }}</p>
+        {% endfor %}
+      </article>
+    {% endfor %}
+  </section>
+{% endblock %}

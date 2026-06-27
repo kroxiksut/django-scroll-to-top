@@ -1,0 +1,89 @@
+.demo-admin-language-switcher {
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(31, 41, 55, 0.12);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.96));
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+}
+
+.demo-admin-language-switcher__form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.demo-admin-language-switcher__label {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #475569;
+}
+
+.demo-admin-language-switcher__group {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.demo-admin-language-switcher__button {
+  appearance: none;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  color: #334155;
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background-color 120ms ease,
+    color 120ms ease,
+    box-shadow 120ms ease,
+    transform 120ms ease;
+}
+
+.demo-admin-language-switcher__button:hover,
+.demo-admin-language-switcher__button:focus-visible {
+  background: rgba(15, 23, 42, 0.08);
+  color: #0f172a;
+  transform: translateY(-1px);
+}
+
+.demo-admin-language-switcher__button--active {
+  background: #0f172a;
+  color: #f8fafc;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.18);
+}
+
+.demo-admin-language-switcher__button--active:hover,
+.demo-admin-language-switcher__button--active:focus-visible {
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+.demo-admin-language-switcher__hint {
+  margin: 0;
+  font-size: 12px;
+  color: #64748b;
+}
+
+@media (max-width: 720px) {
+  .demo-admin-language-switcher__form {
+    align-items: flex-start;
+  }
+
+  .demo-admin-language-switcher__group {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
