@@ -3,6 +3,7 @@ from __future__ import annotations
 import re
 from typing import Any, cast
 
+import django
 from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
@@ -26,6 +27,13 @@ _VALID_CORNERS = ("top-left", "top-right", "bottom-left", "bottom-right")
 # is safe to serialize into a data attribute and pass to querySelectorAll.
 _SELECTOR_SAFE_RE = re.compile(r"^[A-Za-z0-9 ._#>~+*\[\]=\"'^$|():,\-]+$")
 _MAX_SELECTOR_LENGTH = 200
+
+# forms.URLField(assume_scheme=...) only exists on Django 5.0+. On 4.2 LTS the
+# kwarg raises TypeError, so only pass it where the running Django supports it.
+# Setting it also silences the Django 5.x deprecation warning and selects https.
+_ASSUME_HTTPS: dict[str, Any] = (
+    {"assume_scheme": "https"} if django.VERSION >= (5, 0) else {}
+)
 
 
 def _int_or_default(value: Any, default: int) -> int:
@@ -796,14 +804,9 @@ class ScrollTopUploadedIconAdminForm(forms.ModelForm):
             "Upload an SVG file. Only the sanitized payload is stored for rendering."
         ),
     )
-    source_url = forms.URLField(
-        label=_("Source URL"),
-        assume_scheme="https",
-    )
+    source_url = forms.URLField(label=_("Source URL"), **_ASSUME_HTTPS)
     license_url = forms.URLField(
-        label=_("License URL"),
-        required=False,
-        assume_scheme="https",
+        label=_("License URL"), required=False, **_ASSUME_HTTPS
     )
 
     class Meta:
