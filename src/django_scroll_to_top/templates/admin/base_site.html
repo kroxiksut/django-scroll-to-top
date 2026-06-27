@@ -1,0 +1,11 @@
+{% extends "admin/base.html" %}
+{% load scroll_to_top %}
+
+{# Inject the scroll-to-top control through the documented footer block only.
+   The title and branding blocks are intentionally left to Django so the
+   standard branding, subtitle, and color-theme toggle keep working unchanged
+   across the supported Django 4.2 / 5.x / 6.x admin templates. #}
+{% block footer %}
+  {{ block.super }}
+  {% scroll_to_top scope="admin" %}
+{% endblock %}

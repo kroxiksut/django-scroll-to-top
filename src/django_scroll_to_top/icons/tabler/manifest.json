@@ -1,0 +1,144 @@
+{
+  "source": "Tabler Icons",
+  "homepage": "https://github.com/tabler/tabler-icons",
+  "version": "3.44.0",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2020-2026 Pawe\\u0142 Kuna",
+  "subset_purpose": "Built-in upward navigation icons for django-scroll-to-top.",
+  "outline": [
+    "arrow-up",
+    "chevron-up",
+    "caret-up",
+    "arrow-badge-up",
+    "arrow-big-up",
+    "circle-arrow-up",
+    "circle-chevron-up",
+    "circle-caret-up",
+    "square-arrow-up",
+    "square-chevron-up",
+    "square-rounded-arrow-up",
+    "square-rounded-chevron-up"
+  ],
+  "filled": [
+    "caret-up",
+    "arrow-badge-up",
+    "arrow-big-up",
+    "circle-arrow-up",
+    "circle-chevron-up",
+    "circle-caret-up",
+    "square-arrow-up",
+    "square-chevron-up",
+    "square-rounded-arrow-up",
+    "square-rounded-chevron-up"
+  ],
+  "metadata": {
+    "arrow-up": {
+      "display_name": "Arrow Up",
+      "short_description": "Simple upward arrow with minimal chrome.",
+      "tags": ["arrow", "up", "minimal"],
+      "admin_group": "Built-in Tabler icons",
+      "supports_stroke_width": true,
+      "original_view_box": "0 0 24 24",
+      "normalized_view_box": "0 0 24 24"
+    },
+    "chevron-up": {
+      "display_name": "Chevron Up",
+      "short_description": "Compact upward chevron for lightweight controls.",
+      "tags": ["chevron", "up", "compact"],
+      "admin_group": "Built-in Tabler icons",
+      "supports_stroke_width": true,
+      "original_view_box": "0 0 24 24",
+      "normalized_view_box": "0 0 24 24"
+    },
+    "caret-up": {
+      "display_name": "Caret Up",
+      "short_description": "Small caret suited to dense UI states.",
+      "tags": ["caret", "up", "compact"],
+      "admin_group": "Built-in Tabler icons",
+      "supports_stroke_width": true,
+      "original_view_box": "0 0 24 24",
+      "normalized_view_box": "0 0 24 24"
+    },
+    "arrow-badge-up": {
+      "display_name": "Arrow Badge Up",
+      "short_description": "Upward arrow framed by a badge-style outline.",
+      "tags": ["arrow", "badge", "up"],
+      "admin_group": "Built-in Tabler icons",
+      "supports_stroke_width": true,
+      "original_view_box": "0 0 24 24",
+      "normalized_view_box": "0 0 24 24"
+    },
+    "arrow-big-up": {
+      "display_name": "Arrow Big Up",
+      "short_description": "Heavier upward arrow with stronger visual emphasis.",
+      "tags": ["arrow", "up", "bold"],
+      "admin_group": "Built-in Tabler icons",
+      "supports_stroke_width": true,
+      "original_view_box": "0 0 24 24",
+      "normalized_view_box": "0 0 24 24"
+    },
+    "circle-arrow-up": {
+      "display_name": "Circle Arrow Up",
+      "short_description": "Arrow-up symbol inside a circular frame.",
+      "tags": ["circle", "arrow", "up"],
+      "admin_group": "Built-in Tabler icons",
+      "supports_stroke_width": true,
+      "original_view_box": "0 0 24 24",
+      "normalized_view_box": "0 0 24 24"
+    },
+    "circle-chevron-up": {
+      "display_name": "Circle Chevron Up",
+      "short_description": "Chevron-up symbol inside a circular frame.",
+      "tags": ["circle", "chevron", "up"],
+      "admin_group": "Built-in Tabler icons",
+      "supports_stroke_width": true,
+      "original_view_box": "0 0 24 24",
+      "normalized_view_box": "0 0 24 24"
+    },
+    "circle-caret-up": {
+      "display_name": "Circle Caret Up",
+      "short_description": "Caret-up symbol inside a circular frame.",
+      "tags": ["circle", "caret", "up"],
+      "admin_group": "Built-in Tabler icons",
+      "supports_stroke_width": true,
+      "original_view_box": "0 0 24 24",
+      "normalized_view_box": "0 0 24 24"
+    },
+    "square-arrow-up": {
+      "display_name": "Square Arrow Up",
+      "short_description": "Arrow-up symbol inside a square frame.",
+      "tags": ["square", "arrow", "up"],
+      "admin_group": "Built-in Tabler icons",
+      "supports_stroke_width": true,
+      "original_view_box": "0 0 24 24",
+      "normalized_view_box": "0 0 24 24"
+    },
+    "square-chevron-up": {
+      "display_name": "Square Chevron Up",
+      "short_description": "Chevron-up symbol inside a square frame.",
+      "tags": ["square", "chevron", "up"],
+      "admin_group": "Built-in Tabler icons",
+      "supports_stroke_width": true,
+      "original_view_box": "0 0 24 24",
+      "normalized_view_box": "0 0 24 24"
+    },
+    "square-rounded-arrow-up": {
+      "display_name": "Rounded Square Arrow Up",
+      "short_description": "Arrow-up symbol inside a rounded square frame.",
+      "tags": ["rounded", "square", "arrow", "up"],
+      "admin_group": "Built-in Tabler icons",
+      "supports_stroke_width": true,
+      "original_view_box": "0 0 24 24",
+      "normalized_view_box": "0 0 24 24"
+    },
+    "square-rounded-chevron-up": {
+      "display_name": "Rounded Square Chevron Up",
+      "short_description": "Chevron-up symbol inside a rounded square frame.",
+      "tags": ["rounded", "square", "chevron", "up"],
+      "admin_group": "Built-in Tabler icons",
+      "supports_stroke_width": true,
+      "original_view_box": "0 0 24 24",
+      "normalized_view_box": "0 0 24 24"
+    }
+  }
+}

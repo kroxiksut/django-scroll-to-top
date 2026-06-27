@@ -66,7 +66,7 @@ rides up above the cookie launcher:
 ![The control lifted above the cookie launcher after adding the selectors](../assets/shared/19.2-obstacle-selectors-after.png)
 
 The full write-up, including the alternatives, is in
-[Collision integration with django-cookies-152fz](../integration/django-cookies-152fz.md).
+[Avoiding third-party floating widgets (collision)](../recipes/floating-widget-collision.md).
 
 ## User dismissal
 

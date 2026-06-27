@@ -5,13 +5,12 @@
 
 This guide takes `django-scroll-to-top` from an empty install to a rendered
 scroll-to-top control on the site and in the standard Django Admin. For the full
-settings reference and admin configuration, see the configuration and admin
-pages (planned) and the [project overview](../../README.md).
+settings reference and admin configuration, see the
+[configuration](./configuration.md) and [admin](./operations-admin.md) pages and
+the [project overview](../../README.md).
 
-> **Pre-release note.** The distribution is not on PyPI yet, so the `pip install
-> django-scroll-to-top` command below describes the intended contract. Until the
-> first release, install from a local checkout (for example
-> `pip install -e .` from the repository root).
+> **Beta (`0.x`).** Published as a `0.x` beta — usable and tested, but the public
+> API may still change between minor releases before `1.0.0`.
 
 ## 1. Install
 

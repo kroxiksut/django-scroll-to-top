@@ -1,0 +1,62 @@
+<div
+  class="dstt-control-wrap{% if scroll_to_top.custom_css_class %} {{ scroll_to_top.custom_css_class }}{% endif %}"
+  data-dstt-contract-version="{{ scroll_to_top.contract_version }}"
+  data-dstt-scope="{{ scroll_to_top.scope }}"
+  data-dstt-site-id="{{ scroll_to_top.site_id }}"
+  data-dstt-shape="{{ scroll_to_top.shape }}"
+  data-dstt-fill="{{ scroll_to_top.fill_variant }}"
+  data-dstt-shadow="{{ scroll_to_top.shadow_preset }}"
+  data-dstt-corner="{{ scroll_to_top.corner }}"
+  data-dstt-hot-zone="{{ scroll_to_top.hot_zone_placement }}"
+  data-dstt-hot-zone-appearance="{{ scroll_to_top.hot_zone_appearance }}"
+  data-dstt-collision-policy="{{ scroll_to_top.collision_policy }}"
+  data-dstt-obstacle-selectors="{{ scroll_to_top.obstacle_selectors_json }}"
+  data-dstt-obstacle-gap="{{ scroll_to_top.obstacle_gap }}"
+  data-dstt-collision-max-shift="{{ scroll_to_top.collision_max_shift }}"
+  data-dstt-fallback-corners="{{ scroll_to_top.fallback_corner_order_json }}"
+  data-dstt-icon="{{ scroll_to_top.icon_name }}"
+  data-dstt-icon-style="{{ scroll_to_top.icon_style }}"
+  data-dstt-icon-source="{{ scroll_to_top.icon_source }}"
+  data-dstt-theme-mode="{{ scroll_to_top.theme_mode }}"
+  data-dstt-template="{{ scroll_to_top.template_variant }}"
+  data-dstt-config="{{ scroll_to_top.style_token }}"
+  data-dstt-allow-dismissal="{% if scroll_to_top.allow_user_dismissal %}true{% else %}false{% endif %}"
+  data-dstt-dismissal-storage="{{ scroll_to_top.dismissal_storage }}"
+  data-dstt-dismissal-duration="{{ scroll_to_top.dismissal_duration }}"
+  data-dstt-dismissal-days="{{ scroll_to_top.dismissal_days }}"
+  data-dstt-dismissal-confirm="{% if scroll_to_top.dismissal_requires_confirmation %}true{% else %}false{% endif %}"
+  data-dstt-dismiss-confirm-text="{{ scroll_to_top.dismiss_confirm_text }}"
+  data-dstt-dismissal-version="{{ scroll_to_top.dismissal_version }}"
+  data-dstt-threshold-mode="{{ scroll_to_top.threshold_mode }}"
+  data-dstt-show-after-px="{{ scroll_to_top.show_after_px }}"
+  data-dstt-show-after-viewports="{{ scroll_to_top.show_after_viewports }}"
+  data-dstt-min-document-height="{{ scroll_to_top.min_document_height_px }}"
+  data-dstt-show-delay="{{ scroll_to_top.show_delay_ms }}"
+  data-dstt-hide-delay="{{ scroll_to_top.hide_delay_ms }}"
+  data-dstt-visibility-direction="{{ scroll_to_top.visibility_direction }}"
+  data-dstt-scroll-target="{{ scroll_to_top.scroll_target_selector }}"
+  data-dstt-scroll-offset="{{ scroll_to_top.scroll_offset_px }}"
+  data-dstt-fixed-header="{{ scroll_to_top.fixed_header_selector }}"
+  data-dstt-scroll-behavior="{{ scroll_to_top.scroll_behavior }}"
+>
+  <a
+    class="dstt-control"
+    href="#"
+    aria-label="{{ scroll_to_top.aria_label }}"
+  >
+    <span class="dstt-control__icon">{{ scroll_to_top.icon_svg|safe }}</span>
+    {% if scroll_to_top.template_variant == "icon-label" %}
+    <span class="dstt-control__label">{{ scroll_to_top.label_text }}</span>
+    {% endif %}
+  </a>
+  {% if scroll_to_top.allow_user_dismissal %}
+  <button
+    type="button"
+    class="dstt-control__dismiss"
+    data-dstt-dismiss-control
+    aria-label="{{ scroll_to_top.dismiss_label_text }}"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+  {% endif %}
+</div>

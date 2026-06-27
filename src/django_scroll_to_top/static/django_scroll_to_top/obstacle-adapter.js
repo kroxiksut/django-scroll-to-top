@@ -1,0 +1,190 @@
+/*
+ * Optional obstacle adapter for django-scroll-to-top.
+ *
+ * The core runtime already treats elements marked with
+ * [data-scroll-top-obstacle] and administrator-configured CSS selectors as
+ * obstacles and recalculates placement on DOM changes. This adapter is a thin,
+ * OPTIONAL convenience layer for integrating cookie banners, chat widgets,
+ * sticky navigation, toast containers, and floating action buttons:
+ *
+ *   - it tags matching markup with the generic obstacle marker, so a host does
+ *     not have to enter selectors by hand;
+ *   - it tags dynamically inserted elements (for example a compact cookie
+ *     launcher that appears after the banner is dismissed);
+ *   - it bridges a widget's own open/close/collapse events to
+ *     window.djstt.refresh() for snappier recalculation.
+ *
+ * Loading this file never makes any third-party package a dependency: selectors
+ * only match when that markup is actually present on the page. Cross-origin
+ * iframe contents are never inspected; tagging an <iframe> element makes the
+ * collision engine treat the iframe's own bounding rectangle as an obstacle.
+ */
+(function () {
+  "use strict";
+
+  var MARKER = "data-scroll-top-obstacle";
+  var GAP_ATTR = "data-scroll-top-obstacle-gap";
+  var PRIORITY_ATTR = "data-scroll-top-obstacle-priority";
+  var registrations = [];
+  var observer = null;
+
+  function refresh() {
+    if (window.djstt && typeof window.djstt.refresh === "function") {
+      window.djstt.refresh();
+    }
+  }
+
+  function normalizeSelectors(value) {
+    if (typeof value === "string" && value.length > 0) {
+      return [value];
+    }
+    if (Array.isArray(value)) {
+      return value.filter(function (item) {
+        return typeof item === "string" && item.length > 0;
+      });
+    }
+    return [];
+  }
+
+  /* Tag one element; returns true when the marker was newly added. */
+  function tagElement(element, registration) {
+    if (!element || element.nodeType !== 1) {
+      return false;
+    }
+    var added = false;
+    if (!element.hasAttribute(MARKER)) {
+      element.setAttribute(MARKER, "");
+      added = true;
+    }
+    if (registration.gap !== null && !element.hasAttribute(GAP_ATTR)) {
+      element.setAttribute(GAP_ATTR, String(registration.gap));
+    }
+    if (registration.priority !== null && !element.hasAttribute(PRIORITY_ATTR)) {
+      element.setAttribute(PRIORITY_ATTR, String(registration.priority));
+    }
+    return added;
+  }
+
+  /* Tag every element matching a registration; returns the new-tag count. */
+  function tagRegistration(registration) {
+    var tagged = 0;
+    registration.selectors.forEach(function (selector) {
+      var nodes;
+      try {
+        nodes = document.querySelectorAll(selector);
+      } catch (error) {
+        return;
+      }
+      Array.prototype.forEach.call(nodes, function (element) {
+        if (tagElement(element, registration)) {
+          tagged += 1;
+        }
+      });
+    });
+    return tagged;
+  }
+
+  function tagAll() {
+    var tagged = 0;
+    registrations.forEach(function (registration) {
+      tagged += tagRegistration(registration);
+    });
+    return tagged;
+  }
+
+  function ensureObserver() {
+    if (observer || typeof MutationObserver !== "function" || !document.body) {
+      return;
+    }
+    /* Watch for newly inserted obstacle markup and tag it. Geometry changes are
+     * already handled by the core runtime, so we only re-tag and refresh when a
+     * new element actually receives the marker. */
+    observer = new MutationObserver(function () {
+      if (tagAll() > 0) {
+        refresh();
+      }
+    });
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  }
+
+  function register(config) {
+    config = config || {};
+    var registration = {
+      selectors: normalizeSelectors(config.selectors),
+      gap: config.gap === undefined || config.gap === null ? null : config.gap,
+      priority:
+        config.priority === undefined || config.priority === null
+          ? null
+          : config.priority,
+      events: Array.isArray(config.events) ? config.events : []
+    };
+    if (!registration.selectors.length) {
+      return;
+    }
+    registrations.push(registration);
+    registration.events.forEach(function (eventName) {
+      document.addEventListener(eventName, function () {
+        tagRegistration(registration);
+        refresh();
+      });
+    });
+    tagRegistration(registration);
+    ensureObserver();
+    refresh();
+  }
+
+  var api = {
+    register: register,
+    refresh: function () {
+      tagAll();
+      refresh();
+    },
+    /* Documented presets for common floating widgets. A preset is data only:
+     * pass it to register(), optionally after overriding fields. The panel and
+     * the compact launcher are listed separately so each is measured on its own
+     * bounding rectangle when visible. */
+    presets: {
+      // django-cookies-152fz. Targets the launcher pill and the consent panel
+      // (the visible obstacle rectangles it renders) and bridges the banner's
+      // real namespaced lifecycle events, so placement re-measures when it
+      // opens, closes, expands the custom section, or a choice is submitted.
+      djangoCookies152fz: {
+        selectors: [
+          "[data-cookie-banner-launcher]",
+          "[data-cookie-banner-panel]"
+        ],
+        gap: 16,
+        priority: 10,
+        events: [
+          "dz152fz:cookie-banner:opened",
+          "dz152fz:cookie-banner:closed",
+          "dz152fz:cookie-banner:custom-opened",
+          "dz152fz:cookie-banner:action-submitted"
+        ]
+      },
+      stickyBottomNavigation: {
+        selectors: ["[data-scroll-top-sticky-nav]", ".dstt-sticky-bottom-nav"],
+        gap: 12,
+        priority: 5
+      }
+    }
+  };
+
+  if (!window.djsttObstacleAdapter) {
+    window.djsttObstacleAdapter = api;
+  }
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+      ensureObserver();
+      if (tagAll() > 0) {
+        refresh();
+      }
+    },
+    { once: true }
+  );
+})();

@@ -1,0 +1,17 @@
+{
+  "name": "django-scroll-to-top-dev",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Dev-only JavaScript tooling (ESLint + TypeScript .d.ts checks) for the django-scroll-to-top static assets. Not part of the published Python package.",
+  "scripts": {
+    "lint": "eslint src/django_scroll_to_top/static/django_scroll_to_top",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "check": "npm run lint && npm run typecheck"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.5.0",
+    "globals": "^17.7.0",
+    "typescript": "^6.0.3"
+  }
+}

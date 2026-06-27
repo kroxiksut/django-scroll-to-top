@@ -1,0 +1,15 @@
+{
+  "// note": "Dev-only. Parse/validity-checks the public .d.ts contract (tsc --noEmit). Does NOT type-check the ES5 runtime implementation (checkJs is intentionally off).",
+  "compilerOptions": {
+    "lib": ["ES2019", "DOM"],
+    "types": [],
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": false,
+    "forceConsistentCasingInFileNames": true
+  },
+  "files": [
+    "src/django_scroll_to_top/static/django_scroll_to_top/scroll-to-top.d.ts",
+    "src/django_scroll_to_top/static/django_scroll_to_top/obstacle-adapter.d.ts"
+  ]
+}

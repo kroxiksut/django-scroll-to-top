@@ -1,0 +1,69 @@
+{% extends "admin/change_form.html" %}
+{% load i18n %}
+
+{% block after_field_sets %}
+  {{ block.super }}
+  {{ dstt_field_defaults|json_script:"dstt-field-defaults" }}
+  {{ dstt_reset_labels|json_script:"dstt-reset-labels" }}
+  {{ dstt_ui_labels|json_script:"dstt-ui-labels" }}
+  <details class="module dstt-icon-picker-details" data-dstt-icon-picker open>
+    <summary class="dstt-icon-picker-details__summary">
+      {% translate "Icon picker" %}
+    </summary>
+    <p class="help">
+      {% translate "Choose from the safe built-in Tabler subset or sanitized uploaded icons." %}
+    </p>
+    <div class="dstt-icon-picker__toolbar">
+      <label class="dstt-icon-picker__search">
+        <span>{% translate "Search icons" %}</span>
+        <input
+          type="search"
+          placeholder="{% translate 'Filter by icon name' %}"
+          data-dstt-picker-search
+        >
+      </label>
+      <p class="dstt-icon-picker__hint">
+        {% translate "Click a card to sync the fields and the live preview." %}
+      </p>
+    </div>
+    <div
+      class="dstt-icon-picker__grid"
+      data-dstt-picker-grid
+      data-dstt-current-source="{{ icon_picker_state.icon_source }}"
+      data-dstt-current-name="{{ icon_picker_state.icon_name }}"
+      data-dstt-current-style="{{ icon_picker_state.icon_style }}"
+      data-dstt-current-uploaded="{{ icon_picker_state.uploaded_icon }}"
+    >
+      {% for item in icon_picker_items %}
+        <button
+          type="button"
+          class="dstt-icon-picker__card{% if item.source == icon_picker_state.icon_source and item.source != 'uploaded' and item.name == icon_picker_state.icon_name and item.style == icon_picker_state.icon_style %} dstt-icon-picker__card--selected{% elif item.source == icon_picker_state.icon_source and item.source == 'uploaded' and item.value == icon_picker_state.uploaded_icon %} dstt-icon-picker__card--selected{% endif %}"
+          data-dstt-picker-card
+          data-dstt-picker-source="{{ item.source }}"
+          data-dstt-picker-value="{{ item.value }}"
+          data-dstt-picker-name="{{ item.name }}"
+          data-dstt-picker-style="{{ item.style }}"
+        >
+          <span class="dstt-icon-picker__thumb">{{ item.svg }}</span>
+          <span class="dstt-icon-picker__meta">
+            <span class="dstt-icon-picker__group">{{ item.admin_group }}</span>
+            <span class="dstt-icon-picker__name">{{ item.display_name }}</span>
+            <span class="dstt-icon-picker__description">{{ item.short_description }}</span>
+            <span class="dstt-icon-picker__tags">{{ item.style }} · {{ item.tags_label }}</span>
+          </span>
+        </button>
+      {% endfor %}
+    </div>
+    <p class="dstt-icon-picker__empty" data-dstt-picker-empty hidden>
+      {% translate "No icons match the current filters." %}
+    </p>
+  </details>
+  <fieldset class="module aligned dstt-live-preview-fieldset">
+    <h2>{% translate "Live preview" %}</h2>
+    {% if preview_html %}
+      {{ preview_html|safe }}
+    {% else %}
+      <p>{% translate "Preview becomes available when the current form values are valid." %}</p>
+    {% endif %}
+  </fieldset>
+{% endblock %}

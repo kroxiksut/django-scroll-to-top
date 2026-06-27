@@ -1,0 +1,1517 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: django-scroll-to-top\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-24 20:44+0800\n"
+"PO-Revision-Date: 2026-06-23 00:00+0000\n"
+"Last-Translator: django-scroll-to-top\n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: .\admin.py:41
+msgid "Built-in Tabler icons"
+msgstr "Встроенные иконки Tabler"
+
+#: .\admin.py:42
+msgid "Developer icons"
+msgstr "Иконки разработчика"
+
+#: .\admin.py:43
+msgid "Uploaded icons"
+msgstr "Загруженные иконки"
+
+#: .\admin.py:98 .\forms.py:93
+msgid "Circle"
+msgstr "Круг"
+
+#: .\admin.py:99 .\forms.py:94
+msgid "Square"
+msgstr "Квадрат"
+
+#: .\admin.py:100 .\forms.py:95
+msgid "Rounded square"
+msgstr "Квадрат со скруглением"
+
+#: .\admin.py:101 .\forms.py:96
+msgid "Pill"
+msgstr "Капсула"
+
+#: .\admin.py:104 .\forms.py:103
+msgid "Solid"
+msgstr "Сплошная"
+
+#: .\admin.py:105 .\forms.py:104 .\forms.py:150 .\models.py:903
+msgid "Outline"
+msgstr "Контур"
+
+#: .\admin.py:106 .\forms.py:105
+msgid "Soft"
+msgstr "Мягкая"
+
+#: .\admin.py:107 .\forms.py:106
+msgid "Ghost"
+msgstr "Призрачная"
+
+#: .\admin.py:108 .\forms.py:107
+msgid "Glass"
+msgstr "Стекло"
+
+#: .\admin.py:109 .\forms.py:108
+msgid "Gradient"
+msgstr "Градиент"
+
+#: .\admin.py:112 .\forms.py:161 .\models.py:217
+msgid "Bottom right"
+msgstr "Снизу справа"
+
+#: .\admin.py:113 .\forms.py:160 .\models.py:216
+msgid "Bottom left"
+msgstr "Снизу слева"
+
+#: .\admin.py:114 .\forms.py:159 .\models.py:215
+msgid "Top right"
+msgstr "Сверху справа"
+
+#: .\admin.py:115 .\forms.py:158 .\models.py:214
+msgid "Top left"
+msgstr "Сверху слева"
+
+#: .\admin.py:118 .\forms.py:91 .\models.py:258
+msgid "Shape"
+msgstr "Форма"
+
+#: .\admin.py:120 .\forms.py:101 .\models.py:263
+msgid "Fill variant"
+msgstr "Вариант заливки"
+
+#: .\admin.py:122 .\forms.py:156 .\models.py:345
+msgid "Button location"
+msgstr "Местоположение кнопки"
+
+#: .\admin.py:318 .\admin.py:812 .\admin.py:938
+msgid "Identity"
+msgstr "Идентификация"
+
+#: .\admin.py:322
+msgid "Visual style"
+msgstr "Визуальный стиль"
+
+#: .\admin.py:340
+msgid "Placement and side click zone"
+msgstr "Размещение и боковая зона клика"
+
+#: .\admin.py:351
+msgid "Colors"
+msgstr "Цвета"
+
+#: .\admin.py:380
+msgid "Styling"
+msgstr "Оформление"
+
+#: .\admin.py:396
+msgid "Responsive sizing"
+msgstr "Адаптивные размеры"
+
+#: .\admin.py:409
+msgid "Collision avoidance"
+msgstr "Избегание коллизий"
+
+#: .\admin.py:421
+msgid "Visibility"
+msgstr "Видимость"
+
+#: .\admin.py:435
+msgid "Scrolling"
+msgstr "Прокрутка"
+
+#: .\admin.py:446
+msgid "User dismissal"
+msgstr "Скрытие пользователем"
+
+#: .\admin.py:459
+msgid "Lifecycle"
+msgstr "Жизненный цикл"
+
+#: .\admin.py:469 .\admin.py:946
+msgid "Metadata"
+msgstr "Метаданные"
+
+#: .\admin.py:526
+msgid ""
+"Heads up: the icon/foreground and background colors are below a 3:1 contrast"
+" ratio, which can hurt legibility. Saved anyway."
+msgstr ""
+"Внимание: цвет иконки/переднего плана и фон имеют контраст ниже 3:1, что "
+"может ухудшить читаемость. Тем не менее сохранено."
+
+#: .\admin.py:532
+msgid "Publish selected revision"
+msgstr "Опубликовать выбранную ревизию"
+
+#: .\admin.py:539
+#, python-format
+msgid "Skipped %(name)s: assign a profile before publishing."
+msgstr "Пропущено %(name)s: назначьте профиль перед публикацией."
+
+#: .\admin.py:549
+#, python-format
+msgid "Published %(count)d revision(s)."
+msgstr "Опубликовано ревизий: %(count)d."
+
+#: .\admin.py:552
+msgid "Create draft from selected revision"
+msgstr "Создать черновик из выбранной ревизии"
+
+#: .\admin.py:560
+#, python-format
+msgid "Created %(count)d draft revision(s)."
+msgstr "Создано черновиков: %(count)d."
+
+#: .\admin.py:563
+msgid "Roll back by re-publishing selected revision"
+msgstr "Откатить, повторно опубликовав выбранную ревизию"
+
+#: .\admin.py:568
+msgid "Select exactly one revision to roll back to."
+msgstr "Выберите ровно одну ревизию для отката."
+
+#: .\admin.py:576
+msgid "Assign a profile before rolling back."
+msgstr "Назначьте профиль перед откатом."
+
+#: .\admin.py:581
+msgid "Rolled back to the selected revision."
+msgstr "Выполнен откат к выбранной ревизии."
+
+#: .\admin.py:600
+msgid ""
+"This revision is published. Saving changes here updates the live "
+"configuration directly. Use “Create draft from selected revision” first if "
+"you would rather stage changes."
+msgstr ""
+"Эта ревизия опубликована. Сохранение изменений здесь напрямую обновляет "
+"активную конфигурацию. Если вы хотите подготовить изменения отдельно, "
+"сначала выполните «Создать черновик из выбранной ревизии»."
+
+#: .\admin.py:613
+msgid ""
+"This archived revision is read-only. To reuse it, select it in the revision "
+"list and run “Create draft from selected revision”, edit the new draft, then"
+" publish it."
+msgstr ""
+"Эта архивная ревизия доступна только для чтения. Чтобы использовать её "
+"повторно, выберите её в списке ревизий и выполните «Создать черновик из "
+"выбранной ревизии», отредактируйте новый черновик и опубликуйте его."
+
+#: .\admin.py:624
+msgid "Reset section to defaults"
+msgstr "Сбросить раздел к значениям по умолчанию"
+
+#: .\admin.py:625
+msgid "Restore last saved"
+msgstr "Восстановить последнее сохранённое"
+
+#: .\admin.py:739
+#, python-format
+msgid "Uploaded icon provided by %(author)s."
+msgstr "Загруженная иконка от %(author)s."
+
+#: .\admin.py:823
+msgid "Source metadata"
+msgstr "Метаданные источника"
+
+#: .\admin.py:839
+msgid "Upload"
+msgstr "Загрузка"
+
+#: .\admin.py:856
+msgid "Sanitized preview"
+msgstr "Очищенный предпросмотр"
+
+#: .\admin.py:867
+msgid "License notice"
+msgstr "Уведомление о лицензии"
+
+#: .\admin.py:871
+msgid ""
+"Uploading and sanitizing an SVG does not mark it as free or open content. "
+"The site operator remains responsible for having the right to use and "
+"distribute the icon."
+msgstr ""
+"Загрузка и очистка SVG не делает его свободным или открытым контентом. "
+"Оператор сайта несёт ответственность за наличие прав на использование и "
+"распространение иконки."
+
+#: .\admin.py:877
+msgid "Export icon attribution report"
+msgstr "Экспортировать отчёт об атрибуции иконок"
+
+#: .\admin.py:942
+msgid "Publication"
+msgstr "Публикация"
+
+#: .\admin_preview.py:37
+msgid "Cookie banner collision"
+msgstr "Коллизия с cookie-баннером"
+
+#: .\admin_preview.py:43
+msgid "Cookie banner on the right"
+msgstr "Cookie-баннер справа"
+
+#: .\admin_preview.py:48
+msgid "Cookie banner on the left"
+msgstr "Cookie-баннер слева"
+
+#: .\admin_preview.py:57
+msgid "Mobile bottom navigation"
+msgstr "Мобильная нижняя навигация"
+
+#: .\admin_preview.py:63
+msgid "Sticky mobile navigation"
+msgstr "Прилипающая мобильная навигация"
+
+#: .\admin_preview.py:72
+msgid "Chat widget and multiple obstacles"
+msgstr "Чат-виджет и несколько препятствий"
+
+#: .\admin_preview.py:78
+msgid "Chat widget"
+msgstr "Чат-виджет"
+
+#: .\admin_preview.py:83
+msgid "Multiple obstacles"
+msgstr "Несколько препятствий"
+
+#: .\admin_preview.py:149
+msgid "Four corners"
+msgstr "Четыре угла"
+
+#: .\admin_preview.py:189
+msgid "Threshold and scroll behavior"
+msgstr "Порог и поведение прокрутки"
+
+#: .\admin_preview.py:198
+msgid "Before threshold"
+msgstr "До порога"
+
+#: .\admin_preview.py:206
+msgid "After threshold"
+msgstr "После порога"
+
+#: .\admin_preview.py:221
+msgid "Reduced motion preview"
+msgstr "Предпросмотр с уменьшенной анимацией"
+
+#: .\admin_preview.py:230
+msgid "Standard motion"
+msgstr "Стандартная анимация"
+
+#: .\admin_preview.py:236
+msgid "Reduced motion"
+msgstr "Уменьшенная анимация"
+
+#: .\apps.py:10
+msgid "Scroll-to-top button"
+msgstr "Кнопка прокрутки наверх"
+
+#: .\checks.py:31
+msgid "django-scroll-to-top migrations could not be inspected."
+msgstr "Не удалось проинспектировать миграции django-scroll-to-top."
+
+#: .\checks.py:34
+msgid ""
+"Run migrations for django-scroll-to-top before relying on the public "
+"template tag."
+msgstr ""
+"Примените миграции django-scroll-to-top, прежде чем полагаться на публичный "
+"template tag."
+
+#: .\checks.py:46
+msgid "django-scroll-to-top has unapplied migrations."
+msgstr "У django-scroll-to-top есть непримённые миграции."
+
+#: .\checks.py:49
+msgid ""
+"Run `python manage.py migrate django_scroll_to_top` to make renderer "
+"configuration checks reliable."
+msgstr ""
+"Выполните `python manage.py migrate django_scroll_to_top`, чтобы проверки "
+"конфигурации рендерера были надёжными."
+
+#: .\checks.py:61
+msgid "django-scroll-to-top CSP mode is not supported."
+msgstr "Режим CSP django-scroll-to-top не поддерживается."
+
+#: .\checks.py:64
+msgid "Set DJANGO_SCROLL_TO_TOP['CSP_MODE'] to 'external' or 'nonce'."
+msgstr "Установите DJANGO_SCROLL_TO_TOP['CSP_MODE'] в 'external' или 'nonce'."
+
+#: .\checks.py:78
+msgid "django-scroll-to-top default collision policy is not supported."
+msgstr ""
+"Политика коллизий по умолчанию django-scroll-to-top не поддерживается."
+
+#: .\checks.py:84
+msgid ""
+"Set DJANGO_SCROLL_TO_TOP['DEFAULT_COLLISION_POLICY'] to one of 'ignore', "
+"'shift', 'fallback_corner', or 'hide'."
+msgstr ""
+"Установите DJANGO_SCROLL_TO_TOP['DEFAULT_COLLISION_POLICY'] в одно из "
+"'ignore', 'shift', 'fallback_corner' или 'hide'."
+
+#: .\checks.py:103
+msgid ""
+"django-scroll-to-top admin integration is enabled but django.contrib.admin "
+"is not installed."
+msgstr ""
+"Интеграция с админкой django-scroll-to-top включена, но django.contrib.admin"
+" не установлен."
+
+#: .\checks.py:109
+msgid ""
+"Add 'django.contrib.admin' to INSTALLED_APPS or set "
+"DJANGO_SCROLL_TO_TOP['ADMIN_ENABLED'] to False."
+msgstr ""
+"Добавьте 'django.contrib.admin' в INSTALLED_APPS или установите "
+"DJANGO_SCROLL_TO_TOP['ADMIN_ENABLED'] в False."
+
+#: .\checks.py:124
+msgid ""
+"django-scroll-to-top Sites Framework integration is enabled but "
+"django.contrib.sites is not installed."
+msgstr ""
+"Интеграция с Sites Framework django-scroll-to-top включена, но "
+"django.contrib.sites не установлен."
+
+#: .\checks.py:130
+msgid ""
+"Add 'django.contrib.sites' to INSTALLED_APPS or set "
+"DJANGO_SCROLL_TO_TOP['SITES_FRAMEWORK_ENABLED'] to False."
+msgstr ""
+"Добавьте 'django.contrib.sites' в INSTALLED_APPS или установите "
+"DJANGO_SCROLL_TO_TOP['SITES_FRAMEWORK_ENABLED'] в False."
+
+#: .\checks.py:151
+msgid ""
+"django-scroll-to-top stylesheet URLs are not included in the project "
+"URLConf."
+msgstr ""
+"URL-адреса таблицы стилей django-scroll-to-top не включены в URLConf "
+"проекта."
+
+#: .\checks.py:157
+msgid ""
+"Include `django_scroll_to_top.urls` with the `django_scroll_to_top` "
+"namespace to support strict CSP without `unsafe-inline`."
+msgstr ""
+"Подключите `django_scroll_to_top.urls` с пространством имён "
+"`django_scroll_to_top` для поддержки строгого CSP без `unsafe-inline`."
+
+#: .\checks.py:179
+msgid ""
+"django-scroll-to-top admin template overrides may not win because "
+"django.contrib.admin is installed earlier."
+msgstr ""
+"Переопределения admin-шаблонов django-scroll-to-top могут не сработать, так "
+"как django.contrib.admin установлен раньше."
+
+#: .\checks.py:185
+msgid ""
+"Place 'django_scroll_to_top' before 'django.contrib.admin' in INSTALLED_APPS"
+" when ADMIN_ENABLED is true."
+msgstr ""
+"Разместите 'django_scroll_to_top' перед 'django.contrib.admin' в "
+"INSTALLED_APPS, когда ADMIN_ENABLED истинно."
+
+#: .\checks.py:202
+msgid "DJANGO_SCROLL_TO_TOP must be a dict."
+msgstr "DJANGO_SCROLL_TO_TOP должен быть словарём."
+
+#: .\checks.py:205
+msgid ""
+"Define DJANGO_SCROLL_TO_TOP as a dictionary of installation flags, for "
+"example {'SITE_ENABLED': True}."
+msgstr ""
+"Определите DJANGO_SCROLL_TO_TOP как словарь установочных флагов, например "
+"{'SITE_ENABLED': True}."
+
+#: .\checks.py:217
+#, python-format
+msgid "DJANGO_SCROLL_TO_TOP has unknown keys: %(keys)s."
+msgstr "DJANGO_SCROLL_TO_TOP содержит неизвестные ключи: %(keys)s."
+
+#: .\checks.py:222
+#, python-format
+msgid "Remove the unknown keys or check for typos. Known keys are: %(known)s."
+msgstr ""
+"Удалите неизвестные ключи или проверьте опечатки. Известные ключи: "
+"%(known)s."
+
+#: .\checks.py:251
+#, python-format
+msgid "django-scroll-to-top packaged assets are missing: %(names)s."
+msgstr "Отсутствуют упакованные ресурсы django-scroll-to-top: %(names)s."
+
+#: .\checks.py:256
+msgid ""
+"Reinstall the package; the wheel must ship templates and minified static "
+"assets."
+msgstr ""
+"Переустановите пакет; wheel должен содержать шаблоны и минифицированную "
+"статику."
+
+#: .\forms.py:73 .\models.py:328
+msgid "Theme mode"
+msgstr "Режим темы"
+
+#: .\forms.py:75 .\models.py:124
+msgid "Manual"
+msgstr "Вручную"
+
+#: .\forms.py:76 .\models.py:125
+msgid "Inherit admin theme"
+msgstr "Наследовать тему админки"
+
+#: .\forms.py:82 .\models.py:318
+msgid "Icon source"
+msgstr "Источник иконки"
+
+#: .\forms.py:84 .\models.py:117
+msgid "Built-in"
+msgstr "Встроенная"
+
+#: .\forms.py:85 .\models.py:118
+msgid "Developer"
+msgstr "Разработчик"
+
+#: .\forms.py:86 .\models.py:119
+msgid "Uploaded"
+msgstr "Загруженная"
+
+#: .\forms.py:113 .\models.py:269
+msgid "Template variant"
+msgstr "Вариант шаблона"
+
+#: .\forms.py:115 .\models.py:184
+msgid "Icon only"
+msgstr "Только иконка"
+
+#: .\forms.py:116 .\models.py:185
+msgid "Icon with label"
+msgstr "Иконка с подписью"
+
+#: .\forms.py:122 .\models.py:276
+msgid "Accessible name"
+msgstr "Доступное имя"
+
+#: .\forms.py:127 .\models.py:286
+msgid "Visible label"
+msgstr "Видимая подпись"
+
+#: .\forms.py:132 .\models.py:297
+msgid "Custom CSS class"
+msgstr "Пользовательский CSS-класс"
+
+#: .\forms.py:137 .\models.py:306
+msgid "Icon"
+msgstr "Иконка"
+
+#: .\forms.py:142 .\models.py:340
+msgid "Uploaded icon"
+msgstr "Загруженная иконка"
+
+#: .\forms.py:145
+msgid "Select an uploaded icon"
+msgstr "Выберите загруженную иконку"
+
+#: .\forms.py:148 .\models.py:312
+msgid "Icon style"
+msgstr "Стиль иконки"
+
+#: .\forms.py:151 .\models.py:904
+msgid "Filled"
+msgstr "Залитая"
+
+#: .\forms.py:166 .\models.py:351
+msgid "Side click zone"
+msgstr "Боковая зона клика"
+
+#: .\forms.py:168 .\models.py:198
+msgid "Disabled"
+msgstr "Отключено"
+
+#: .\forms.py:169 .\models.py:199
+msgid "Same side as the button"
+msgstr "С той же стороны, что и кнопка"
+
+#: .\forms.py:170 .\models.py:200
+msgid "Left edge"
+msgstr "Левый край"
+
+#: .\forms.py:171 .\models.py:201
+msgid "Right edge"
+msgstr "Правый край"
+
+#: .\forms.py:177 .\models.py:359
+msgid "Side click zone width (px)"
+msgstr "Ширина боковой зоны клика (px)"
+
+#: .\forms.py:183 .\models.py:365
+msgid "Side click zone appearance"
+msgstr "Вид боковой зоны клика"
+
+#: .\forms.py:185 .\models.py:207
+msgid "Invisible, highlight on hover"
+msgstr "Невидимая, подсветка при наведении"
+
+#: .\forms.py:186 .\models.py:208
+msgid "Fully invisible"
+msgstr "Полностью невидимая"
+
+#: .\forms.py:187 .\models.py:209
+msgid "Always slightly visible"
+msgstr "Слегка видимая всегда"
+
+#: .\admin.py:643
+msgid "Light theme"
+msgstr "Светлая тема"
+
+#: .\admin.py:644
+msgid "Dark theme"
+msgstr "Тёмная тема"
+
+#: .\forms.py:192 .\models.py:381
+msgid "Foreground color"
+msgstr "Цвет переднего плана"
+
+#: .\forms.py:194 .\models.py:388
+msgid "Icon color override"
+msgstr "Переопределение цвета иконки"
+
+#: .\forms.py:197 .\models.py:398
+msgid "Dark icon color override"
+msgstr "Переопределение цвета иконки (тёмная тема)"
+
+#: .\forms.py:199 .\models.py:404
+msgid "Background color"
+msgstr "Цвет фона"
+
+#: .\forms.py:200 .\models.py:409
+msgid "Border color"
+msgstr "Цвет границы"
+
+#: .\forms.py:202 .\models.py:414
+msgid "Hover foreground color"
+msgstr "Цвет переднего плана при наведении"
+
+#: .\forms.py:206 .\models.py:419
+msgid "Hover background color"
+msgstr "Цвет фона при наведении"
+
+#: .\forms.py:210 .\models.py:424
+msgid "Hover border color"
+msgstr "Цвет границы при наведении"
+
+#: .\forms.py:214 .\models.py:429
+msgid "Active foreground color"
+msgstr "Цвет переднего плана в активном состоянии"
+
+#: .\forms.py:218 .\models.py:434
+msgid "Active background color"
+msgstr "Цвет фона в активном состоянии"
+
+#: .\forms.py:222 .\models.py:439
+msgid "Active border color"
+msgstr "Цвет границы в активном состоянии"
+
+#: .\forms.py:225 .\models.py:444
+msgid "Focus ring color"
+msgstr "Цвет кольца фокуса"
+
+#: .\forms.py:227 .\models.py:449
+msgid "Dark foreground color"
+msgstr "Цвет переднего плана (тёмная тема)"
+
+#: .\forms.py:231 .\models.py:454
+msgid "Dark background color"
+msgstr "Цвет фона (тёмная тема)"
+
+#: .\forms.py:235 .\models.py:459
+msgid "Dark border color"
+msgstr "Цвет границы (тёмная тема)"
+
+#: .\forms.py:239 .\models.py:464
+msgid "Dark hover foreground color"
+msgstr "Цвет переднего плана при наведении (тёмная тема)"
+
+#: .\forms.py:243 .\models.py:469
+msgid "Dark hover background color"
+msgstr "Цвет фона при наведении (тёмная тема)"
+
+#: .\forms.py:247 .\models.py:474
+msgid "Dark hover border color"
+msgstr "Цвет границы при наведении (тёмная тема)"
+
+#: .\forms.py:251 .\models.py:479
+msgid "Dark active foreground color"
+msgstr "Цвет переднего плана в активном состоянии (тёмная тема)"
+
+#: .\forms.py:255 .\models.py:484
+msgid "Dark active background color"
+msgstr "Цвет фона в активном состоянии (тёмная тема)"
+
+#: .\forms.py:259 .\models.py:489
+msgid "Dark active border color"
+msgstr "Цвет границы в активном состоянии (тёмная тема)"
+
+#: .\forms.py:263 .\models.py:494
+msgid "Dark focus ring color"
+msgstr "Цвет кольца фокуса (тёмная тема)"
+
+#: .\forms.py:267 .\models.py:500
+msgid "Shadow"
+msgstr "Тень"
+
+#: .\forms.py:269 .\models.py:176
+msgid "None"
+msgstr "Нет"
+
+#: .\forms.py:270 .\models.py:177
+msgid "Small"
+msgstr "Маленькая"
+
+#: .\forms.py:271 .\models.py:178
+msgid "Medium"
+msgstr "Средняя"
+
+#: .\forms.py:272 .\models.py:179
+msgid "Large"
+msgstr "Большая"
+
+#: .\forms.py:278 .\models.py:505
+msgid "Opacity"
+msgstr "Прозрачность"
+
+#: .\forms.py:285 .\models.py:510
+msgid "Border width (px)"
+msgstr "Толщина рамки (px)"
+
+#: .\forms.py:292 .\models.py:514
+msgid "Focus ring width (px)"
+msgstr "Ширина кольца фокуса (px)"
+
+#: .\forms.py:299 .\models.py:518
+msgid "Focus ring offset (px)"
+msgstr "Отступ кольца фокуса (px)"
+
+#: .\forms.py:306 .\models.py:523
+msgid "Gradient start color"
+msgstr "Начальный цвет градиента"
+
+#: .\forms.py:311 .\models.py:529
+msgid "Gradient end color"
+msgstr "Конечный цвет градиента"
+
+#: .\forms.py:316 .\models.py:533
+msgid "Gradient angle (deg)"
+msgstr "Угол градиента (град.)"
+
+#: .\forms.py:323 .\models.py:537
+msgid "Backdrop blur (px)"
+msgstr "Размытие подложки (px)"
+
+#: .\forms.py:330 .\models.py:542
+msgid "Desktop button size"
+msgstr "Размер кнопки на десктопе"
+
+#: .\forms.py:335 .\models.py:546
+msgid "Inherit mobile button size"
+msgstr "Наследовать размер кнопки на мобильном"
+
+#: .\forms.py:340 .\models.py:550
+msgid "Mobile button size"
+msgstr "Размер кнопки на мобильном"
+
+#: .\forms.py:345 .\models.py:554
+msgid "Desktop icon size"
+msgstr "Размер иконки на десктопе"
+
+#: .\forms.py:350 .\models.py:558
+msgid "Inherit mobile icon size"
+msgstr "Наследовать размер иконки на мобильном"
+
+#: .\forms.py:355 .\models.py:562
+msgid "Mobile icon size"
+msgstr "Размер иконки на мобильном"
+
+#: .\forms.py:360 .\models.py:568
+msgid "Collision policy"
+msgstr "Политика коллизий"
+
+#: .\forms.py:362 .\models.py:133
+msgid "Inherit module default"
+msgstr "Наследовать значение модуля по умолчанию"
+
+#: .\forms.py:363 .\models.py:134
+msgid "Ignore obstacles"
+msgstr "Игнорировать препятствия"
+
+#: .\forms.py:364 .\models.py:135
+msgid "Shift along edge"
+msgstr "Смещать вдоль края"
+
+#: .\forms.py:365 .\models.py:136
+msgid "Try fallback corners"
+msgstr "Пробовать резервные углы"
+
+#: .\forms.py:366 .\models.py:137
+msgid "Hide when blocked"
+msgstr "Скрывать при блокировке"
+
+#: .\forms.py:372 .\models.py:577
+msgid "Obstacle selectors"
+msgstr "Селекторы препятствий"
+
+#: .\forms.py:378 .\models.py:585
+msgid "Obstacle gap"
+msgstr "Отступ до препятствия"
+
+#: .\forms.py:385 .\models.py:590
+msgid "Maximum collision shift"
+msgstr "Максимальное смещение при коллизии"
+
+#: .\forms.py:392 .\models.py:597
+msgid "Fallback corner order"
+msgstr "Порядок резервных углов"
+
+#: .\forms.py:397 .\models.py:607
+msgid "Threshold mode"
+msgstr "Режим порога"
+
+#: .\forms.py:399 .\models.py:143
+msgid "Pixels"
+msgstr "Пиксели"
+
+#: .\forms.py:400 .\models.py:144
+msgid "Viewport heights"
+msgstr "Высоты экрана"
+
+#: .\forms.py:401 .\models.py:145
+msgid "Combined"
+msgstr "Комбинированный"
+
+#: .\forms.py:407 .\models.py:615
+msgid "Show after scroll (px)"
+msgstr "Показывать после прокрутки (px)"
+
+#: .\forms.py:414 .\models.py:619
+msgid "Show after viewports"
+msgstr "Показать после (высот экрана)"
+
+#: .\forms.py:421 .\models.py:624
+msgid "Minimum document height (px)"
+msgstr "Минимальная высота документа (px)"
+
+#: .\forms.py:428 .\models.py:629
+msgid "Show delay (ms)"
+msgstr "Задержка показа (мс)"
+
+#: .\forms.py:435 .\models.py:633
+msgid "Hide delay (ms)"
+msgstr "Задержка скрытия (мс)"
+
+#: .\forms.py:442 .\models.py:639
+msgid "Visibility direction"
+msgstr "Направление видимости"
+
+#: .\forms.py:444 .\models.py:151
+msgid "Stay visible past threshold"
+msgstr "Оставаться видимой после порога"
+
+#: .\forms.py:445 .\models.py:152
+msgid "Show only when scrolling up"
+msgstr "Показывать только при прокрутке вверх"
+
+#: .\forms.py:446 .\models.py:153
+msgid "Hide while scrolling down"
+msgstr "Скрывать при прокрутке вниз"
+
+#: .\forms.py:452 .\models.py:649
+msgid "Scroll target selector"
+msgstr "Селектор цели прокрутки"
+
+#: .\forms.py:457 .\models.py:657
+msgid "Scroll offset (px)"
+msgstr "Смещение прокрутки (px)"
+
+#: .\forms.py:464 .\models.py:664
+msgid "Fixed header selector"
+msgstr "Селектор фиксированной шапки"
+
+#: .\forms.py:469 .\models.py:674
+msgid "Scroll behavior"
+msgstr "Поведение прокрутки"
+
+#: .\forms.py:471 .\models.py:158
+msgid "Smooth"
+msgstr "Плавно"
+
+#: .\forms.py:472 .\models.py:159
+msgid "Instant"
+msgstr "Мгновенно"
+
+#: .\forms.py:478 .\models.py:682
+msgid "Allow user dismissal"
+msgstr "Разрешить скрытие пользователем"
+
+#: .\forms.py:483 .\models.py:689
+msgid "Dismissal storage"
+msgstr "Хранение скрытия"
+
+#: .\forms.py:485 .\models.py:166
+msgid "Local storage"
+msgstr "Локальное хранилище"
+
+#: .\forms.py:486 .\models.py:167
+msgid "Session storage"
+msgstr "Сессионное хранилище"
+
+#: .\forms.py:487 .\models.py:168
+msgid "Functional cookie"
+msgstr "Функциональный cookie"
+
+#: .\forms.py:488 .\models.py:169
+msgid "Do not persist"
+msgstr "Не сохранять"
+
+#: .\forms.py:494 .\models.py:699
+msgid "Dismissal duration"
+msgstr "Срок скрытия"
+
+#: .\forms.py:496 .\models.py:190
+msgid "Until the revision or version changes"
+msgstr "До смены ревизии или версии"
+
+#: .\forms.py:497 .\models.py:191
+msgid "For a number of days"
+msgstr "На заданное число дней"
+
+#: .\forms.py:503 .\models.py:703
+msgid "Dismissal days"
+msgstr "Дней скрытия"
+
+#: .\forms.py:510 .\models.py:708
+msgid "Confirm before dismissing"
+msgstr "Подтверждать перед скрытием"
+
+#: .\forms.py:515 .\models.py:714
+msgid "Dismissal version"
+msgstr "Версия скрытия"
+
+#: .\forms.py:565
+msgid "Select an uploaded icon."
+msgstr "Выберите загруженную иконку."
+
+#: .\forms.py:580 .\models.py:756
+msgid ""
+"Custom CSS class must be space-separated tokens of letters, digits, hyphens,"
+" and underscores."
+msgstr ""
+"Пользовательский CSS-класс должен состоять из разделённых пробелами токенов "
+"из букв, цифр, дефисов и подчёркиваний."
+
+#: .\forms.py:601 .\forms.py:613
+#, python-format
+msgid "Selector %(selector)s contains unsupported characters."
+msgstr "Селектор %(selector)s содержит неподдерживаемые символы."
+
+#: .\forms.py:619
+msgid "Preview data must be valid before rendering."
+msgstr "Данные предпросмотра должны быть корректны перед рендерингом."
+
+#: .\forms.py:625
+msgid "Select an uploaded icon before rendering preview."
+msgstr "Выберите загруженную иконку перед рендерингом предпросмотра."
+
+#: .\forms.py:792
+msgid "SVG upload"
+msgstr "Загрузка SVG"
+
+#: .\forms.py:795
+msgid ""
+"Upload an SVG file. Only the sanitized payload is stored for rendering."
+msgstr "Загрузите SVG-файл. Для рендеринга хранится только очищенная версия."
+
+#: .\forms.py:820
+msgid "An SVG upload is required when creating an icon."
+msgstr "При создании иконки требуется загрузка SVG."
+
+#: .\forms.py:824
+msgid "Only SVG uploads are supported."
+msgstr "Поддерживается загрузка только SVG."
+
+#: .\models.py:35
+msgid "Site"
+msgstr "Сайт"
+
+#: .\models.py:36
+msgid "Django Admin"
+msgstr "Django Admin"
+
+#: .\models.py:52
+msgid "Scope"
+msgstr "Область"
+
+#: .\models.py:59
+msgid "Site ID"
+msgstr "ID сайта"
+
+#: .\models.py:61
+msgid ""
+"Optional Sites Framework site id. Leave empty for the global profile that "
+"applies when no site-specific profile exists."
+msgstr ""
+"Необязательный id сайта Sites Framework. Оставьте пустым для глобального "
+"профиля, применяемого при отсутствии профиля для конкретного сайта."
+
+#: .\models.py:65 .\models.py:254 .\models.py:913
+msgid "Name"
+msgstr "Название"
+
+#: .\models.py:68
+msgid "Enabled"
+msgstr "Включено"
+
+#: .\models.py:69
+msgid "Business decision to show the control for this scope now."
+msgstr "Бизнес-решение показывать кнопку для этой области сейчас."
+
+#: .\models.py:77
+msgid "Published revision"
+msgstr "Опубликованная ревизия"
+
+#: .\models.py:83
+msgid "Scroll-to-top profile"
+msgstr "Профиль кнопки прокрутки наверх"
+
+#: .\models.py:84
+msgid "Scroll-to-top profiles"
+msgstr "Профили кнопки прокрутки наверх"
+
+#: .\models.py:99
+msgid "global"
+msgstr "глобальный"
+
+#: .\models.py:108
+msgid "Draft"
+msgstr "Черновик"
+
+#: .\models.py:109
+msgid "Published"
+msgstr "Опубликовано"
+
+#: .\models.py:110
+msgid "Archived"
+msgstr "Архивировано"
+
+#: .\models.py:213
+msgid "Auto (opposite the admin button)"
+msgstr "Авто (противоположно кнопке админки)"
+
+#: .\models.py:226
+msgid "Profile"
+msgstr "Профиль"
+
+#: .\models.py:232
+msgid "Status"
+msgstr "Статус"
+
+#: .\models.py:234
+msgid ""
+"Draft and published revisions are editable; editing a published revision "
+"updates the live configuration directly. Archived revisions are immutable "
+"snapshots kept for rollback."
+msgstr ""
+"Черновые и опубликованные ревизии редактируемы; редактирование "
+"опубликованной ревизии напрямую обновляет активную конфигурацию. Архивные "
+"ревизии — неизменяемые снимки, сохраняемые для отката."
+
+#: .\models.py:246
+msgid "Created by"
+msgstr "Создал"
+
+#: .\models.py:252
+msgid "Published at"
+msgstr "Опубликовано в"
+
+#: .\models.py:270
+msgid "Icon only, or an icon with a visible label."
+msgstr "Только иконка или иконка с видимой подписью."
+
+#: .\models.py:278
+msgid ""
+"Optional accessible name override. Leave empty to use the safe translated "
+"default."
+msgstr ""
+"Необязательное переопределение доступного имени. Оставьте пустым для "
+"безопасного переводимого значения по умолчанию."
+
+#: .\models.py:288
+msgid ""
+"Visible label text for the icon-with-label variant. Stored as-is and not "
+"auto-translated; leave empty to fall back to the translated accessible name,"
+" or use a per-site profile for multilingual sites."
+msgstr ""
+"Текст видимой подписи для варианта «иконка с подписью». Хранится как есть и "
+"не переводится автоматически; оставьте пустым, чтобы использовать "
+"переводимое доступное имя, или используйте профиль на сайт для "
+"мультиязычности."
+
+#: .\models.py:299
+msgid ""
+"Optional space-separated CSS class tokens added to the control wrapper for "
+"project integration. Letters, digits, hyphen, underscore."
+msgstr ""
+"Необязательные разделённые пробелами CSS-токены, добавляемые к обёртке "
+"контрола для интеграции проекта. Буквы, цифры, дефис, подчёркивание."
+
+#: .\models.py:307
+msgid "Set by the icon picker below; not edited by hand."
+msgstr "Задаётся пикером иконок ниже; вручную не редактируется."
+
+#: .\models.py:320
+msgid ""
+"Built-in: vendored Tabler subset. Developer: icons registered in code. "
+"Uploaded: sanitized SVGs added in the admin."
+msgstr ""
+"Встроенные: поставляемый набор Tabler. Разработчика: иконки, "
+"зарегистрированные в коде. Загруженные: очищенные SVG, добавленные в "
+"админке."
+
+#: .\models.py:330
+msgid ""
+"Use explicit colors, or inherit supported Django Admin theme variables with "
+"safe fallbacks."
+msgstr ""
+"Использовать явные цвета или наследовать поддерживаемые переменные темы "
+"Django Admin с безопасными запасными значениями."
+
+#: .\models.py:353
+msgid ""
+"Optional full-height clickable strip along a screen edge that also scrolls "
+"to top. The button sits inside the strip."
+msgstr ""
+"Необязательная кликабельная полоса на всю высоту вдоль края экрана, которая "
+"тоже прокручивает наверх. Кнопка располагается внутри полосы."
+
+#: .\models.py:371
+msgid "Demo button location in admin"
+msgstr "Местоположение демо-кнопки в админке"
+
+#: .\models.py:373
+msgid ""
+"Where the floating demo button sits while editing in the admin. Does not "
+"affect the live site. Auto picks the corner opposite the admin's own button."
+msgstr ""
+"Где располагается плавающая демо-кнопка при редактировании в админке. На "
+"рабочий сайт не влияет. «Авто» выбирает угол, противоположный собственной "
+"кнопке админки."
+
+#: .\models.py:382
+msgid "Icon and label color (the SVG inherits it via currentColor)."
+msgstr "Цвет иконки и подписи (SVG наследует его через currentColor)."
+
+#: .\models.py:390
+msgid ""
+"Optional color for the SVG icon only. Leave empty to use the foreground "
+"color. The icon must use currentColor to pick this up."
+msgstr ""
+"Необязательный цвет только для SVG-иконки. Пусто — используется цвет "
+"переднего плана. Иконка должна использовать currentColor."
+
+#: .\models.py:399
+msgid "Optional dark-theme icon color. Empty inherits the icon color."
+msgstr ""
+"Необязательный цвет иконки для тёмной темы. Пусто — наследуется цвет иконки."
+
+#: .\models.py:506
+msgid "Control opacity from 0 (transparent) to 1 (opaque)."
+msgstr "Прозрачность контрола от 0 (прозрачный) до 1 (непрозрачный)."
+
+#: .\models.py:524
+msgid "Used by the gradient fill variant."
+msgstr "Используется вариантом градиентной заливки."
+
+#: .\models.py:538
+msgid "Used by the glass fill variant where the browser supports it."
+msgstr ""
+"Используется вариантом заливки «стекло», где поддерживается браузером."
+
+#: .\models.py:570
+msgid ""
+"How the control reacts when it overlaps a floating obstacle. Inherit uses "
+"DJANGO_SCROLL_TO_TOP['DEFAULT_COLLISION_POLICY']."
+msgstr ""
+"Как контрол реагирует на перекрытие плавающим препятствием. «Наследовать» "
+"использует DJANGO_SCROLL_TO_TOP['DEFAULT_COLLISION_POLICY']."
+
+#: .\models.py:579
+msgid ""
+"Optional CSS selectors of floating obstacles, one per line. Elements marked "
+"with [data-scroll-top-obstacle] are always included."
+msgstr ""
+"Необязательные CSS-селекторы плавающих препятствий, по одному на строку. "
+"Элементы с [data-scroll-top-obstacle] включаются всегда."
+
+#: .\models.py:586
+msgid "Minimum gap in pixels kept between the control and an obstacle."
+msgstr "Минимальный зазор в пикселях между контролом и препятствием."
+
+#: .\models.py:591
+msgid "Maximum automatic displacement in pixels before giving up."
+msgstr "Максимальное автоматическое смещение в пикселях до отказа."
+
+#: .\models.py:599
+msgid ""
+"Optional ordered corners tried by the fallback_corner policy, separated by "
+"spaces or commas (for example: bottom-left top-right)."
+msgstr ""
+"Необязательный упорядоченный список углов для политики fallback_corner, "
+"разделённых пробелами или запятыми (например: bottom-left top-right)."
+
+#: .\models.py:609
+msgid ""
+"Show the control after a pixel distance, a number of viewport heights, or "
+"both combined."
+msgstr ""
+"Показывать кнопку после прокрутки на число пикселей, на число высот экрана "
+"или их сочетание."
+
+#: .\models.py:620
+msgid "Number of viewport heights scrolled before showing."
+msgstr "Сколько высот экрана нужно прокрутить, прежде чем показать кнопку."
+
+#: .\models.py:625
+msgid "Do not show the control on documents shorter than this."
+msgstr "Не показывать контрол на документах ниже этого значения."
+
+#: .\models.py:641
+msgid ""
+"Stay visible past the threshold, show only while scrolling up, or hide while"
+" scrolling down."
+msgstr ""
+"Оставаться видимой после порога, показывать только при прокрутке вверх или "
+"скрывать при прокрутке вниз."
+
+#: .\models.py:651
+msgid ""
+"Optional CSS selector to scroll to. Falls back to the top of the document "
+"when empty or not found."
+msgstr ""
+"Необязательный CSS-селектор цели прокрутки. При пустом или ненайденном "
+"значении используется начало документа."
+
+#: .\models.py:658
+msgid "Extra vertical offset applied to the scroll target."
+msgstr "Дополнительное вертикальное смещение для цели прокрутки."
+
+#: .\models.py:666
+msgid ""
+"Optional CSS selector of a fixed header whose height is subtracted from the "
+"scroll position."
+msgstr ""
+"Необязательный CSS-селектор фиксированной шапки, высота которой вычитается "
+"из позиции прокрутки."
+
+#: .\models.py:676
+msgid ""
+"Native smooth scrolling or an instant jump. Reduced-motion users always get "
+"an instant jump."
+msgstr ""
+"Нативная плавная прокрутка или мгновенный переход. Пользователи с reduced-"
+"motion всегда получают мгновенный переход."
+
+#: .\models.py:683
+msgid "Show a close control so visitors can hide the button."
+msgstr "Показывать элемент закрытия, чтобы посетители могли скрыть кнопку."
+
+#: .\models.py:691
+msgid ""
+"Where an anonymous visitor's dismissal is remembered. Local/session storage "
+"and functional cookies stay client-side."
+msgstr ""
+"Где запоминается скрытие анонимного посетителя. Local/session storage и "
+"функциональные cookie остаются на стороне клиента."
+
+#: .\models.py:704
+msgid "Days a dismissal lasts when the duration is day-based."
+msgstr "Сколько дней действует скрытие при сроке по дням."
+
+#: .\models.py:709
+msgid "Ask the visitor to confirm before hiding the button."
+msgstr "Запрашивать у посетителя подтверждение перед скрытием кнопки."
+
+#: .\models.py:716
+msgid ""
+"Bump this to intentionally re-show the button to visitors who previously "
+"dismissed it."
+msgstr ""
+"Измените это значение, чтобы намеренно снова показать кнопку посетителям, "
+"ранее её скрывшим."
+
+#: .\models.py:724
+msgid "Scroll-to-top revision"
+msgstr "Ревизия кнопки прокрутки наверх"
+
+#: .\models.py:725
+msgid "Scroll-to-top revisions"
+msgstr "Ревизии кнопки прокрутки наверх"
+
+#: .\models.py:746
+msgid ""
+"Archived revisions are immutable. Create a new draft from this revision to "
+"make changes."
+msgstr ""
+"Архивные ревизии неизменяемы. Создайте новый черновик из этой ревизии для "
+"изменений."
+
+#: .\models.py:905
+msgid "Multicolor"
+msgstr "Многоцветная"
+
+#: .\models.py:906
+msgid "Original"
+msgstr "Оригинальная"
+
+#: .\models.py:909
+msgid "Recolor"
+msgstr "Перекрасить"
+
+#: .\models.py:910
+msgid "Preserve original colors"
+msgstr "Сохранить исходные цвета"
+
+#: .\models.py:918
+msgid "Style kind"
+msgstr "Тип стиля"
+
+#: .\models.py:924
+msgid "Color mode"
+msgstr "Режим цвета"
+
+#: .\models.py:926
+msgid ""
+"Recolor outline and filled icons via currentColor, or preserve safe uploaded"
+" colors."
+msgstr ""
+"Перекрашивать контурные и залитые иконки через currentColor или сохранять "
+"безопасные загруженные цвета."
+
+#: .\models.py:930
+msgid "Author"
+msgstr "Автор"
+
+#: .\models.py:935
+msgid "Source name"
+msgstr "Название источника"
+
+#: .\models.py:937
+msgid "Source URL"
+msgstr "URL источника"
+
+#: .\models.py:938
+msgid "License"
+msgstr "Лицензия"
+
+#: .\models.py:942
+msgid "License URL"
+msgstr "URL лицензии"
+
+#: .\models.py:947
+msgid "Copyright notice"
+msgstr "Уведомление об авторских правах"
+
+#: .\models.py:952
+msgid "Attribution text"
+msgstr "Текст атрибуции"
+
+#: .\models.py:956
+msgid "Rights confirmed"
+msgstr "Права подтверждены"
+
+#: .\models.py:958
+msgid ""
+"The uploader confirms that the project may use and distribute this icon. "
+"Uploading and sanitizing the file does not make it free to use."
+msgstr ""
+"Загружающий подтверждает, что проект может использовать и распространять эту"
+" иконку. Загрузка и очистка файла не делает его свободным для использования."
+
+#: .\models.py:964
+msgid "Original filename"
+msgstr "Исходное имя файла"
+
+#: .\models.py:970
+msgid "Sanitized SVG"
+msgstr "Очищенный SVG"
+
+#: .\models.py:978
+msgid "Stroke width override"
+msgstr "Переопределение ширины обводки"
+
+#: .\models.py:980
+msgid ""
+"Optional normalized stroke width applied only to uploaded icons that already"
+" define stroke-width attributes."
+msgstr ""
+"Необязательная нормализованная ширина обводки, применяемая только к "
+"загруженным иконкам, уже задающим атрибуты stroke-width."
+
+#: .\models.py:988
+msgid "Uploaded scroll-to-top icon"
+msgstr "Загруженная иконка кнопки прокрутки наверх"
+
+#: .\models.py:989
+msgid "Uploaded scroll-to-top icons"
+msgstr "Загруженные иконки кнопки прокрутки наверх"
+
+#: .\models.py:998
+msgid "You must confirm the right to use this icon."
+msgstr "Вы должны подтвердить право на использование этой иконки."
+
+#: .\models.py:1004
+msgid ""
+"Only uploaded icons with explicit stroke-width attributes can use a stroke "
+"width override."
+msgstr ""
+"Переопределение ширины обводки доступно только для загруженных иконок с "
+"явными атрибутами stroke-width."
+
+#: .\models.py:1016
+msgid ""
+"Multicolor and original uploaded icons must preserve their safe colors."
+msgstr ""
+"Многоцветные и оригинальные загруженные иконки должны сохранять свои "
+"безопасные цвета."
+
+#: .\models.py:1024
+msgid "A sanitized SVG payload is required."
+msgstr "Требуется очищенный SVG."
+
+#: .\presentation.py:37
+msgid "Scroll back to top"
+msgstr "Прокрутить к началу"
+
+#: .\presentation.py:38
+msgid "Back to top"
+msgstr "Наверх"
+
+#: .\renderer.py:197
+msgid "Hide the scroll-to-top button?"
+msgstr "Скрыть кнопку прокрутки наверх?"
+
+#: .\renderer.py:198
+msgid "Hide the scroll-to-top button"
+msgstr "Скрыть кнопку прокрутки наверх"
+
+#: .\templates\admin\django_scroll_to_top\scrolltoprevision\change_form.html:10
+msgid "Icon picker"
+msgstr "Выбор иконки"
+
+#: .\templates\admin\django_scroll_to_top\scrolltoprevision\change_form.html:13
+msgid ""
+"Choose from the safe built-in Tabler subset or sanitized uploaded icons."
+msgstr ""
+"Выберите из безопасного встроенного набора Tabler или очищенных загруженных "
+"иконок."
+
+#: .\templates\admin\django_scroll_to_top\scrolltoprevision\change_form.html:17
+msgid "Search icons"
+msgstr "Поиск иконок"
+
+#: .\templates\admin\django_scroll_to_top\scrolltoprevision\change_form.html:20
+msgid "Filter by icon name"
+msgstr "Фильтр по названию иконки"
+
+#: .\templates\admin\django_scroll_to_top\scrolltoprevision\change_form.html:25
+msgid "Click a card to sync the fields and the live preview."
+msgstr "Нажмите карточку, чтобы синхронизировать поля и живой предпросмотр."
+
+#: .\templates\admin\django_scroll_to_top\scrolltoprevision\change_form.html:57
+msgid "No icons match the current filters."
+msgstr "Нет иконок, соответствующих текущим фильтрам."
+
+#: .\templates\admin\django_scroll_to_top\scrolltoprevision\change_form.html:61
+msgid "Live preview"
+msgstr "Живой предпросмотр"
+
+#: .\templates\admin\django_scroll_to_top\scrolltoprevision\change_form.html:65
+msgid "Preview becomes available when the current form values are valid."
+msgstr ""
+"Предпросмотр становится доступен, когда текущие значения формы корректны."
+
+#: .\templates\django_scroll_to_top\admin_preview.html:4
+msgid "Preview controls"
+msgstr "Управление предпросмотром"
+
+#: .\templates\django_scroll_to_top\admin_preview.html:6
+msgid "Theme"
+msgstr "Тема"
+
+#: .\templates\django_scroll_to_top\admin_preview.html:7
+msgid "Light"
+msgstr "Светлая"
+
+#: .\templates\django_scroll_to_top\admin_preview.html:8
+msgid "Dark"
+msgstr "Тёмная"
+
+#: .\templates\django_scroll_to_top\admin_preview.html:11
+msgid "State"
+msgstr "Состояние"
+
+#: .\templates\django_scroll_to_top\admin_preview.html:12
+msgid "Normal"
+msgstr "Обычное"
+
+#: .\templates\django_scroll_to_top\admin_preview.html:13
+msgid "Hover"
+msgstr "Наведение"
+
+#: .\templates\django_scroll_to_top\admin_preview.html:14
+msgid "Active"
+msgstr "Нажатие"
+
+#: .\templates\django_scroll_to_top\admin_preview.html:15
+msgid "Focus"
+msgstr "Фокус"
+
+#: .\templates\django_scroll_to_top\admin_preview.html:18
+msgid "Viewport"
+msgstr "Экран"
+
+#: .\templates\django_scroll_to_top\admin_preview.html:19
+msgid "Desktop"
+msgstr "Десктоп"
+
+#: .\templates\django_scroll_to_top\admin_preview.html:20
+msgid "Mobile"
+msgstr "Мобильный"
+
+#: .\templates\django_scroll_to_top\admin_preview.html:39
+msgid "Scenarios: corners, collisions, scrolling"
+msgstr "Сценарии: углы, коллизии, прокрутка"
+
+#: .orms.py:839
+msgid "Uploaded SVG exceeds the maximum allowed size."
+msgstr "Загруженный SVG превышает максимально допустимый размер."

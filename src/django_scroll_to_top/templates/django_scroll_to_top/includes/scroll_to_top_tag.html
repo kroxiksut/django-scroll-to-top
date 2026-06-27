@@ -1,0 +1,1 @@
+{% if stylesheet_url %}<link rel="stylesheet" href="{{ stylesheet_url }}">{% endif %}{% if dynamic_stylesheet_url %}<link rel="stylesheet" href="{{ dynamic_stylesheet_url }}">{% endif %}{% if script_url %}<script src="{{ script_url }}" defer{% if script_nonce %} nonce="{{ script_nonce }}"{% endif %}></script>{% endif %}{% if rendered_markup %}{{ rendered_markup|safe }}{% endif %}

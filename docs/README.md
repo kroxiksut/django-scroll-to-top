@@ -10,10 +10,9 @@ installation and infrastructure choices.
 
 ![The default scroll-to-top control on the demo site](./assets/shared/default-button-demo-site.png)
 
-> **Pre-release status.** The package code, data model, admin, runtime, and test
-> suite are implemented in this repository, but the distribution is not published
-> on PyPI yet. Installation commands describe the intended stable contract and
-> may change before the first public release.
+> **Beta (`0.x`).** The package is feature-complete and tested. While the version
+> stays in the `0.x` series, the public API may still change between minor
+> releases before `1.0.0`.
 
 ## Navigation
 
@@ -38,9 +37,9 @@ installation and infrastructure choices.
 - [Migration and upgrade notes](./en/migration.md) — applying migrations and upgrading.
 - [Demo project](./en/demo.md) — the standalone demo Django project.
 
-## Integration notes
+## Recipes and examples
 
-- [Collision integration with django-cookies-152fz](./integration/django-cookies-152fz.md) — a worked example of avoiding a cookie banner.
+- [Avoiding third-party floating widgets (collision)](./recipes/floating-widget-collision.md) — a worked example using django-cookies-152fz; any floating widget works the same way (it is not a dependency).
 
 ## AI integration guides
 

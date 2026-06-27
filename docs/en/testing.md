@@ -55,6 +55,59 @@ python tools/minify_assets.py        # rebuild *.min.css/js
 python -m build                       # sdist + wheel
 ```
 
+### `tools/minify_assets.py`
+
+This is the project's reproducible asset minifier — a small standard-library
+script (no external minifier, no Node, no runtime build step), kept deliberately
+simple so its output is byte-stable and reviewable in diffs. It reads the source
+assets under `src/django_scroll_to_top/static/django_scroll_to_top/` and rewrites
+their minified siblings:
+
+| Source | Minified output |
+| --- | --- |
+| `scroll-to-top.css` | `scroll-to-top.min.css` |
+| `scroll-to-top.js` | `scroll-to-top.min.js` |
+| `obstacle-adapter.js` | `obstacle-adapter.min.js` |
+
+Minification is intentionally conservative and deterministic: it trims each line,
+drops blank lines (CSS and JS) and full-line `//` comments (JS), and joins the
+rest. There are no semantic transforms — the same input always yields the same
+output, so a regenerated file only changes when its source did.
+
+Run it whenever you edit a `.css` or `.js` source and commit the regenerated
+`*.min.*` files in the **same** change set: the minified files are what ship in
+the wheel and are served to browsers.
+
+The script is also a test dependency, so it must not be deleted or moved:
+`tests/test_runtime_contract.py` and `tests/test_obstacle_adapter.py` import
+`STATIC_DIR`, `_minify_css`, and `_minify_js` from it and assert the committed
+`*.min.*` exactly match a fresh minify of the sources. A stale minified asset
+therefore fails the suite.
+
+### `tools/smoke_install.py`
+
+The pytest suite runs against `src/` (via `pythonpath`), so it cannot catch
+packaging gaps — a template, static asset, locale catalog, or SVG that is missing
+from `package-data` still passes every test. `tools/smoke_install.py` closes that
+gap by exercising the **installed** wheel: it spins up a minimal in-memory Django
+project and checks that the package imports from site-packages (not `src/`), its
+migrations apply, the `{% scroll_to_top %}` tag renders for the `site` and `admin`
+scopes (packaged SVG icon present, `*.min.*` wired, versioned stylesheet endpoint
+reverses), the packaged `admin/base_site.html` override wins template resolution,
+and the minified assets ship.
+
+Run it in an environment where the wheel is installed — not in the dev tree:
+
+```console
+python -m build
+python -m venv /tmp/smoke
+/tmp/smoke/bin/python -m pip install dist/django_scroll_to_top-*.whl
+/tmp/smoke/bin/python tools/smoke_install.py
+```
+
+It exits non-zero on the first failed check. CI runs this automatically in the
+`build` job, so a `package-data` regression fails the pipeline on every push.
+
 ## Related sections
 
 - [Type checking (Pyright)](./type-checking.md)

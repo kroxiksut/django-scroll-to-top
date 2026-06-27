@@ -67,7 +67,7 @@ iframe никогда не инспектируется.
 ![Элемент поднялся над лаунчером куки после добавления селекторов](../assets/shared/19.2-obstacle-selectors-after.png)
 
 Полный разбор, включая альтернативы, — в
-[Collision integration with django-cookies-152fz](../integration/django-cookies-152fz.md)
+[Обход сторонних плавающих виджетов (коллизии)](../recipes/floating-widget-collision.md)
 (на английском).
 
 ## Скрытие пользователем

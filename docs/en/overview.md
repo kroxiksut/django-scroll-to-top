@@ -97,6 +97,26 @@ Run the full suite with:
 python -m pytest
 ```
 
+## Feedback and current limitations
+
+This is an early (`0.x` beta) release. The following areas are explicitly
+best-effort and benefit from real-world reports via
+[GitHub issues](https://github.com/kroxiksut/django-scroll-to-top/issues):
+
+- **Admin integration** — only the standard Django Admin templates are covered by
+  the compatibility test matrix. Custom `AdminSite` instances, overridden base
+  admin templates, and third-party admin themes are best-effort; report what
+  works and what does not.
+- **Frontend behavior** — collision avoidance with real floating widgets (cookie
+  banners, chat launchers, sticky navigation, toast stacks), placement across
+  viewport sizes and safe-area insets, strict-CSP delivery, theme inheritance
+  with custom admin themes, and partial-navigation layers (HTMX, Turbo).
+- **Accessibility in real browsers** — a full WCAG 2.2 AA audit and zoom
+  (200%/400%) verification in real browsers are tracked as later stabilization
+  steps (see the root README roadmap).
+
+See [CONTRIBUTING.md](../../CONTRIBUTING.md) for how to file an effective report.
+
 ## Related sections
 
 - [Quick start](./quickstart.md)

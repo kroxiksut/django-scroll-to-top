@@ -1,0 +1,84 @@
+{% load i18n %}
+<style>{{ preview_stylesheet|safe }}</style>
+<div class="dstt-live-preview" data-dstt-live-preview>
+  <div class="dstt-live-preview__toolbar" role="group" aria-label="{% translate 'Preview controls' %}">
+    <span class="dstt-live-preview__group" data-dstt-preview-control="theme">
+      <span class="dstt-live-preview__group-label">{% translate "Theme" %}</span>
+      <button type="button" class="dstt-live-preview__toggle is-active" data-dstt-preview-value="light">{% translate "Light" %}</button>
+      <button type="button" class="dstt-live-preview__toggle" data-dstt-preview-value="dark">{% translate "Dark" %}</button>
+    </span>
+    <span class="dstt-live-preview__group" data-dstt-preview-control="state">
+      <span class="dstt-live-preview__group-label">{% translate "State" %}</span>
+      <button type="button" class="dstt-live-preview__toggle is-active" data-dstt-preview-value="normal">{% translate "Normal" %}</button>
+      <button type="button" class="dstt-live-preview__toggle" data-dstt-preview-value="hover">{% translate "Hover" %}</button>
+      <button type="button" class="dstt-live-preview__toggle" data-dstt-preview-value="active">{% translate "Active" %}</button>
+      <button type="button" class="dstt-live-preview__toggle" data-dstt-preview-value="focus">{% translate "Focus" %}</button>
+    </span>
+    <span class="dstt-live-preview__group" data-dstt-preview-control="viewport">
+      <span class="dstt-live-preview__group-label">{% translate "Viewport" %}</span>
+      <button type="button" class="dstt-live-preview__toggle is-active" data-dstt-preview-value="desktop">{% translate "Desktop" %}</button>
+      <button type="button" class="dstt-live-preview__toggle" data-dstt-preview-value="mobile">{% translate "Mobile" %}</button>
+    </span>
+  </div>
+  <section
+    class="dstt-preview-panel dstt-live-preview__panel"
+    data-dstt-preview-theme="light"
+    data-dstt-preview-viewport="desktop"
+    data-dstt-preview-state="normal"
+    data-dstt-live-panel
+  >
+    <div class="dstt-preview-panel__canvas">
+      <div class="dstt-preview-panel__content"></div>
+      {{ live_panel.markup|safe }}
+    </div>
+  </section>
+</div>
+{% if panels %}
+  <details class="dstt-preview-scenarios">
+    <summary class="dstt-preview-scenarios__summary">
+      {% translate "Scenarios: corners, collisions, scrolling" %}
+    </summary>
+    <div class="dstt-preview-grid">
+      {% for panel in panels %}
+        <section
+          class="dstt-preview-panel"
+          data-dstt-preview-theme="{{ panel.theme }}"
+          data-dstt-preview-viewport="{{ panel.viewport }}"
+          data-dstt-preview-state="{{ panel.state }}"
+          data-dstt-preview-background="{{ panel.background }}"
+        >
+          <header class="dstt-preview-panel__header">
+            <span>{{ panel.label }}</span>
+            <span class="dstt-preview-panel__meta">
+              {{ panel.viewport|title }} / {{ panel.theme|title }}
+            </span>
+          </header>
+          <div class="dstt-preview-panel__scenes">
+            {% for scene in panel.scenes %}
+              <figure
+                class="dstt-preview-scene{{ scene.scene_classes }}"
+                data-dstt-scene-background="{{ scene.background }}"
+                {% if scene.debug %}data-dstt-debug-rects="on"{% endif %}
+              >
+                <figcaption class="dstt-preview-scene__label">{{ scene.label }}</figcaption>
+                <div class="dstt-preview-panel__canvas{{ scene.canvas_classes }}">
+                  <div class="dstt-preview-panel__content"></div>
+                  {% for obstacle in scene.obstacles %}
+                    <div
+                      class="dstt-preview-obstacle dstt-preview-obstacle--{{ obstacle.kind }}"
+                      data-scroll-top-obstacle
+                      data-dstt-obstacle="{{ obstacle.kind }}"
+                    >
+                      <span>{{ obstacle.label }}</span>
+                    </div>
+                  {% endfor %}
+                  {{ scene.markup|safe }}
+                </div>
+              </figure>
+            {% endfor %}
+          </div>
+        </section>
+      {% endfor %}
+    </div>
+  </details>
+{% endif %}
