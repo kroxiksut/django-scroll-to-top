@@ -76,8 +76,10 @@ class ScrollTopProfile(models.Model):
         related_name="+",
         verbose_name=_("Published revision"),
     )
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(
+        auto_now_add=True, verbose_name=_("Created at")
+    )
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Updated at"))
 
     class Meta:
         verbose_name = _("Scroll-to-top profile")
@@ -717,8 +719,10 @@ class ScrollTopRevision(models.Model):
             "previously dismissed it."
         ),
     )
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(
+        auto_now_add=True, verbose_name=_("Created at")
+    )
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Updated at"))
 
     class Meta:
         verbose_name = _("Scroll-to-top revision")
@@ -963,13 +967,39 @@ class ScrollTopUploadedIcon(models.Model):
         max_length=255,
         verbose_name=_("Original filename"),
     )
-    original_view_box = models.CharField(max_length=100, editable=False, default="")
-    normalized_view_box = models.CharField(max_length=100, editable=False, default="")
-    original_checksum = models.CharField(max_length=64, editable=False)
-    sanitized_checksum = models.CharField(max_length=64, editable=False)
+    original_view_box = models.CharField(
+        max_length=100,
+        editable=False,
+        default="",
+        verbose_name=_("Original view box"),
+    )
+    normalized_view_box = models.CharField(
+        max_length=100,
+        editable=False,
+        default="",
+        verbose_name=_("Normalized view box"),
+    )
+    original_checksum = models.CharField(
+        max_length=64,
+        editable=False,
+        verbose_name=_("Original checksum"),
+    )
+    sanitized_checksum = models.CharField(
+        max_length=64,
+        editable=False,
+        verbose_name=_("Sanitized checksum"),
+    )
     sanitized_svg = models.TextField(verbose_name=_("Sanitized SVG"))
-    supports_current_color = models.BooleanField(default=False, editable=False)
-    supports_stroke_width = models.BooleanField(default=False, editable=False)
+    supports_current_color = models.BooleanField(
+        default=False,
+        editable=False,
+        verbose_name=_("Supports current color"),
+    )
+    supports_stroke_width = models.BooleanField(
+        default=False,
+        editable=False,
+        verbose_name=_("Supports stroke width"),
+    )
     stroke_width_override = models.DecimalField(
         max_digits=4,
         decimal_places=2,
@@ -981,8 +1011,10 @@ class ScrollTopUploadedIcon(models.Model):
             "that already define stroke-width attributes."
         ),
     )
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(
+        auto_now_add=True, verbose_name=_("Created at")
+    )
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Updated at"))
 
     class Meta:
         verbose_name = _("Uploaded scroll-to-top icon")

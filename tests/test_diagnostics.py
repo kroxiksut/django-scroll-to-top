@@ -56,6 +56,54 @@ def test_packaged_assets_check_does_not_false_positive(db) -> None:
     assert not any(message.id == "dstt.W010" for message in messages)
 
 
+def test_database_check_reports_enabled_profile_without_revision(db) -> None:
+    ScrollTopProfile.objects.create(scope="site", name="Site", is_enabled=True)
+
+    messages = run_checks(tags=["database"])
+
+    assert any(message.id == "dstt.W012" for message in messages)
+
+
+def test_database_checks_quiet_for_published_profile(db) -> None:
+    profile = ScrollTopProfile.objects.create(scope="site", name="Site")
+    publish_revision(ScrollTopRevision.objects.create(profile=profile, name="rev"))
+
+    messages = run_checks(tags=["database"])
+
+    assert not any(message.id in {"dstt.W011", "dstt.W012"} for message in messages)
+
+
+def test_database_check_reports_dangling_site_reference(db, monkeypatch) -> None:
+    import sys
+    import types
+
+    from django_scroll_to_top import checks as checks_module
+
+    ScrollTopProfile.objects.create(scope="site", site_id=999, name="ghost")
+
+    # Pretend the Sites Framework is installed; only Site id 1 exists, so the
+    # profile's site_id=999 is dangling.
+    real_is_installed = checks_module.apps.is_installed
+    monkeypatch.setattr(
+        checks_module.apps,
+        "is_installed",
+        lambda label: label == "django.contrib.sites" or real_is_installed(label),
+    )
+
+    class _FakeManager:
+        def values_list(self, *args, **kwargs):
+            return [1]
+
+    fake_models = types.ModuleType("django.contrib.sites.models")
+    fake_models.Site = type("Site", (), {"objects": _FakeManager()})
+    monkeypatch.setitem(sys.modules, "django.contrib.sites.models", fake_models)
+
+    with override_settings(DJANGO_SCROLL_TO_TOP={"SITES_FRAMEWORK_ENABLED": True}):
+        messages = run_checks(tags=["database"])
+
+    assert any(message.id == "dstt.W011" for message in messages)
+
+
 # --- Management commands -----------------------------------------------------
 
 

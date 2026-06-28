@@ -12,6 +12,12 @@ XLINK_NS: Final[str] = "http://www.w3.org/1999/xlink"
 MAX_SVG_BYTES: Final[int] = 100_000
 MAX_ELEMENT_COUNT: Final[int] = 128
 MAX_XML_DEPTH: Final[int] = 8
+# Per-attribute cap on geometry payloads (path ``d`` and polyline/polygon
+# ``points``) so a single element cannot smuggle a pathological coordinate blob
+# that still fits inside the overall file-size budget.
+MAX_PATH_DATA_LENGTH: Final[int] = 20_000
+
+_GEOMETRY_DATA_ATTRIBUTES: Final[frozenset[str]] = frozenset({"d", "points"})
 
 _FORBIDDEN_RAW_MARKERS: Final[tuple[str, ...]] = (
     "<!DOCTYPE",
@@ -237,6 +243,13 @@ def _sanitize_element(
             continue
         if _looks_like_external_reference(attr_value):
             raise SvgSanitizationError("Uploaded SVG references an external resource.")
+        if (
+            local_attr in _GEOMETRY_DATA_ATTRIBUTES
+            and len(attr_value) > MAX_PATH_DATA_LENGTH
+        ):
+            raise SvgSanitizationError(
+                "Uploaded SVG path data exceeds the maximum allowed length."
+            )
         sanitized.set(local_attr, attr_value.strip())
 
     if local_name == "svg":

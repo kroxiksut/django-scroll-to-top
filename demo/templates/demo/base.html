@@ -236,9 +236,6 @@
       <nav class="demo-nav" aria-label="Primary">
         <a href="{% url 'home' %}">Home</a>
         <a href="{% url 'obstacles' %}">Obstacles</a>
-        {% if cookies_enabled %}
-          <a href="{% url 'django_cookies_152fz:cookie_preferences' %}">Cookies</a>
-        {% endif %}
         <a href="/admin/">Admin</a>
       </nav>
     </header>
@@ -255,10 +252,6 @@
   </div>
 
   {% block body_end %}{% endblock %}
-
-  {% block cookie_banner %}
-    {% if cookies_enabled %}{% include "demo/_cookie_banner.html" %}{% endif %}
-  {% endblock %}
 
   {# Single public site integration point: one template tag. #}
   {% scroll_to_top %}

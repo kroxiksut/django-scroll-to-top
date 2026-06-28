@@ -21,12 +21,24 @@ rejects:
 - DTDs and entities;
 - scripts and event handlers;
 - external resource references and embedded documents (`foreignObject`);
-- unsafe namespaces and excessively complex documents.
+- unsafe namespaces;
+- anything exceeding the explicit complexity limits below.
 
 It allows only documented graphical elements and attributes, normalizes geometry
 and `viewBox` data, and stores only the sanitized payload (with original and
 sanitized checksums). Compatible icons support `currentColor` recoloring; safe
 original colors are preserved only in an explicit multicolor/original mode.
+
+The complexity limits are explicit constants in `icons/sanitizer.py`; exceeding
+any of them rejects the upload rather than truncating it:
+
+| Limit | Default |
+| --- | --- |
+| Maximum file size | 100 KB (`MAX_SVG_BYTES = 100_000`) |
+| Maximum element/node count | 128 (`MAX_ELEMENT_COUNT`) |
+| Maximum nesting depth | 8 (`MAX_XML_DEPTH`) |
+| Maximum geometry data per attribute (`d`, `points`) | 20,000 chars (`MAX_PATH_DATA_LENGTH`) |
+| Elements and attributes | strict allowlist (no `style`, `class`, `id`, `href`) |
 
 ### Sanitization is not a license
 

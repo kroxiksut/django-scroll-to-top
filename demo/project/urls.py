@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from django.apps import apps
 from django.contrib import admin
 from django.urls import include, path
 
@@ -21,8 +20,3 @@ urlpatterns = [
         ),
     ),
 ]
-
-# Optional: cookie banner routes are only added when django-cookies-152fz is
-# installed, so the demo runs without it.
-if apps.is_installed("django_cookies_152fz"):
-    urlpatterns.append(path("", include("django_cookies_152fz.urls")))

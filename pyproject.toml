@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "django-scroll-to-top"
-version = "0.1.0"
+version = "0.2.0"
 description = "Accessible and configurable scroll-to-top controls for Django sites and Django Admin"
 authors = [
     { name = "kroxiksut", email = "fmalkov91@gmail.com" },
@@ -38,6 +38,7 @@ classifiers = [
     "Framework :: Django :: 5.2",
     "Framework :: Django :: 6.0",
     "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -52,6 +53,7 @@ Homepage = "https://github.com/kroxiksut/django-scroll-to-top"
 Source = "https://github.com/kroxiksut/django-scroll-to-top"
 Documentation = "https://github.com/kroxiksut/django-scroll-to-top/tree/main/docs"
 Changelog = "https://github.com/kroxiksut/django-scroll-to-top/blob/main/CHANGELOG.md"
+"Release Notes" = "https://github.com/kroxiksut/django-scroll-to-top/releases"
 Issues = "https://github.com/kroxiksut/django-scroll-to-top/issues"
 
 [project.optional-dependencies]

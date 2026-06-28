@@ -10,14 +10,9 @@ environment before you run the demo.
 
 ```console
 python -m pip install .
-python -m pip install django-cookies-152fz  # optional: demo obstacle/cookie test
 python demo/manage.py migrate
 python demo/manage.py runserver
 ```
-
-The second install is optional and only needed if you want to test overlap
-handling with a cookie module. You can replace it with any other app that adds
-its own floating button or banner.
 
 The first migrate seeds:
 
@@ -33,10 +28,6 @@ The first migrate seeds:
   first migrate.
 - The demo content is original and intended for local scroll and layout
   testing.
-- The cookie module (`django-cookies-152fz`) is **optional**. When installed,
-  the demo wires it in with an English default preset, a themed preferences
-  page, and a site-matched visual palette; when absent, the demo skips the
-  banner, the cookie nav link, and the preferences page and runs normally.
 - The `Obstacles` page (`/obstacles/`) demonstrates the collision engine and the
   optional obstacle adapter: a bottom-right cookie banner with open/collapse/
   close controls, a chat widget, a toast, and a sticky mobile navigation bar as
@@ -73,19 +64,3 @@ The demo seeds two published configuration profiles for the package:
 
 This keeps the demo realistic without making the public site and admin drift
 apart during the walkthrough.
-
-## Cookie Module Defaults (optional)
-
-`django-cookies-152fz` is **not required**. The demo detects it at startup: if it
-is not installed, the cookie banner, the cookie nav link, and the preferences
-page are skipped. Install it (`python -m pip install django-cookies-152fz`) to
-see the integration, which is configured to behave like a first-class part of the
-demo site:
-
-- it bootstraps its default data on `migrate`;
-- the banner starts with the English-balanced preset so the public site stays
-  English by default;
-- the preferences page uses the demo shell and the same green/cream palette as
-  the rest of the site;
-- the cookie launcher and preferences link are enabled so the module is easy to
-  discover during the walkthrough.

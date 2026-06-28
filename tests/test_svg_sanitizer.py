@@ -86,6 +86,51 @@ def test_sanitize_uploaded_svg_normalizes_view_box() -> None:
     assert 'viewBox="0 0 24 24"' in sanitized_svg.svg
 
 
+@pytest.mark.parametrize(
+    "element",
+    [
+        '<path d="{data}" stroke="currentColor" stroke-width="2"/>',
+        '<polyline points="{data}" stroke="currentColor" stroke-width="2"/>',
+    ],
+)
+def test_sanitize_uploaded_svg_rejects_overlong_geometry_data(element: str) -> None:
+    sanitizer = __import__("importlib").import_module(
+        "django_scroll_to_top.icons.sanitizer"
+    )
+
+    # Length over the per-attribute cap, but the whole file stays under the
+    # byte budget so the geometry cap is what trips.
+    overlong = "1 " * sanitizer.MAX_PATH_DATA_LENGTH
+    payload = (
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">'
+        + element.format(data=overlong)
+        + "</svg>"
+    )
+    assert len(payload.encode("utf-8")) < sanitizer.MAX_SVG_BYTES
+
+    with pytest.raises(sanitizer.SvgSanitizationError):
+        sanitizer.sanitize_uploaded_svg(payload)
+
+
+def test_sanitize_uploaded_svg_accepts_bounded_path_data() -> None:
+    sanitizer = __import__("importlib").import_module(
+        "django_scroll_to_top.icons.sanitizer"
+    )
+
+    # Long but within the cap: a detailed-but-reasonable path must still pass.
+    bounded = "M0 0 " + "l1 1 " * 1000
+    assert len(bounded) < sanitizer.MAX_PATH_DATA_LENGTH
+    payload = (
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">'
+        f'<path d="{bounded}" stroke="currentColor" stroke-width="2"/>'
+        "</svg>"
+    )
+
+    sanitized_svg = sanitizer.sanitize_uploaded_svg(payload)
+
+    assert sanitized_svg.svg.startswith("<svg")
+
+
 def test_uploaded_icon_registry_returns_sanitized_svg_only() -> None:
     registry = __import__("importlib").import_module(
         "django_scroll_to_top.icons.registry"

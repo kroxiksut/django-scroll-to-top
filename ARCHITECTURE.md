@@ -59,6 +59,13 @@ Draft/publish/rollback must be transactional. A simpler direct configuration
 model may be used for an early internal milestone only if it retains a migration
 path to revisions.
 
+> **Known limitation (0.x).** The published revision is editable, so saving it
+> pushes the change to production immediately with no intermediate draft step.
+> This is an intentional trade-off for the `0.x` series. It is slated for review
+> before `1.0`: make the published revision immutable and require editing a draft
+> cloned via `create_draft_from_revision()`, then republishing. The cloning
+> mechanism already exists; only the lifecycle policy would change.
+
 ## Rendering
 
 The renderer consumes normalized configuration and selects a controlled template

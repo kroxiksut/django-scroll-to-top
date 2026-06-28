@@ -43,6 +43,11 @@ The developer experience is deliberately small:
 No jQuery, external CDN, frontend framework, or mandatory frontend build step is
 required.
 
+> **Most projects need only the Quick start: install → migrate → one template
+> tag.** The built-in defaults are production-ready, so you never have to open
+> the admin. Everything from [Configuration Model](#configuration-model) onward
+> is optional and covered in more depth under [`docs/`](docs/README.md).
+
 ## Why This Package
 
 A basic scroll-to-top link is easy to write. A reusable production component
@@ -359,12 +364,25 @@ Administrator-uploaded SVG is not rendered directly. The pipeline:
 
 - parses SVG as XML;
 - rejects DTD, entities, scripts, event handlers, external resources, embedded
-  documents, unsafe namespaces, and excessive complexity;
+  documents, and unsafe namespaces;
 - allows only documented graphical elements and attributes;
+- enforces explicit complexity limits (see below);
 - normalizes geometry and `viewBox` data;
 - stores and renders only a sanitized payload;
 - supports `currentColor` recoloring for compatible icons;
 - preserves safe original colors only in an explicit multicolor mode.
+
+The complexity limits are explicit constants in `icons/sanitizer.py`; anything
+that exceeds a limit, or uses an element/attribute outside the allowlist, is
+rejected rather than truncated:
+
+| Limit | Default |
+| --- | --- |
+| Maximum file size | 100 KB (`MAX_SVG_BYTES = 100_000`) |
+| Maximum element/node count | 128 (`MAX_ELEMENT_COUNT`) |
+| Maximum nesting depth | 8 (`MAX_XML_DEPTH`) |
+| Maximum geometry data per attribute (`d`, `points`) | 20,000 chars (`MAX_PATH_DATA_LENGTH`) |
+| Elements and attributes | strict allowlist (no `style`, `class`, `id`, `href`) |
 
 Technical sanitization does not grant a right to use an icon. Uploaded icons
 carry author, source, license, copyright, and attribution metadata, plus an
@@ -418,7 +436,10 @@ is not enabled by default.
 
 ## Accessibility
 
-The component targets WCAG 2.2 AA within its scope:
+The component is designed to meet WCAG 2.2 AA within its scope. A full
+independent audit and 200%/400% zoom verification in real browsers are still
+planned (see [Roadmap](#roadmap)); the structural contract below is implemented
+and covered by tests:
 
 - accessible name independent of icon or tooltip;
 - keyboard operation and visible focus;
@@ -538,10 +559,14 @@ python tools/minify_assets.py
 
 ## Compatibility
 
-The support matrix covers Django 4.2 LTS, 5.x, and 6.x with the Python versions
-supported by each selected Django release. Django 4 support is scoped to 4.2 LTS
-rather than the entire 4.x line. The matrix is defined in `pyproject.toml` and
-verified in CI (`tox.ini` mirrors it).
+Officially tested: Django 4.2 LTS, 5.0, 5.1, 5.2 LTS, and 6.0, each against the
+Python versions that Django release supports. Django 4 support is scoped to 4.2
+LTS rather than the entire 4.x line.
+
+The tested matrix is defined in CI (`.github/workflows/ci.yml`); `tox.ini`
+mirrors it for local runs. `pyproject.toml` carries the supported version floor
+(`Django>=4.2,<7`) and the `Framework :: Django` classifiers for the tested
+releases.
 
 The base runtime dependency set is limited to Django.
 

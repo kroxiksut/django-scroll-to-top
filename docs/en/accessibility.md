@@ -3,8 +3,9 @@
 - [Back to documentation index](../README.md)
 - [Behavior and runtime](./runtime.md)
 
-The control targets WCAG 2.2 AA within its scope. The structural contract below
-is implemented and covered by tests (`tests/test_accessibility.py`).
+The control is designed to meet WCAG 2.2 AA within its scope; a full independent
+audit is still planned (see below). The structural contract below is implemented
+and covered by tests (`tests/test_accessibility.py`).
 
 ## Implemented and tested
 

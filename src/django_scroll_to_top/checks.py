@@ -2,7 +2,8 @@ from __future__ import annotations
 
 from django.apps import apps
 from django.conf import settings
-from django.core.checks import Tags, Warning, register
+from django.core.checks import Info, Tags, Warning, register
+from django.core.exceptions import ImproperlyConfigured
 from django.db import DEFAULT_DB_ALIAS, connections
 from django.db.migrations.executor import MigrationExecutor
 from django.db.utils import OperationalError, ProgrammingError
@@ -190,6 +191,105 @@ def django_scroll_to_top_checks(app_configs, **kwargs):
                     id="dstt.W005",
                 )
             )
+
+    return messages
+
+
+@register(Tags.database)
+def django_scroll_to_top_database_checks(app_configs, **kwargs):
+    """Integrity checks that read profile/Site state from the database.
+
+    Registered under ``Tags.database`` (not ``Tags.models``) so a plain
+    ``manage.py check`` and most management commands do not query the database.
+    These run with ``manage.py migrate`` and ``manage.py check --database``.
+    """
+    messages: list = []
+
+    try:
+        from django_scroll_to_top.models import ScrollTopProfile
+    except (ModuleNotFoundError, ImproperlyConfigured):
+        return messages
+
+    try:
+        profiles = list(
+            ScrollTopProfile.objects.values(
+                "scope",
+                "site_id",
+                "name",
+                "is_enabled",
+                "published_revision",
+            )
+        )
+    except (OperationalError, ProgrammingError):
+        # Tables are not migrated yet; dstt.W001/W002 already report that.
+        return messages
+
+    normalized_settings = get_scroll_to_top_settings()
+
+    # dstt.W011: a profile points at a Sites Framework id that no longer exists.
+    if normalized_settings.sites_framework_enabled and apps.is_installed(
+        "django.contrib.sites"
+    ):
+        existing_site_ids: set[int] | None
+        try:
+            from django.contrib.sites.models import Site
+
+            existing_site_ids = set(Site.objects.values_list("id", flat=True))
+        except (OperationalError, ProgrammingError, ImproperlyConfigured):
+            existing_site_ids = None
+        if existing_site_ids is not None:
+            dangling = sorted(
+                str(profile["site_id"])
+                for profile in profiles
+                if profile["site_id"] is not None
+                and profile["site_id"] not in existing_site_ids
+            )
+            if dangling:
+                messages.append(
+                    Warning(
+                        str(
+                            _(
+                                "django-scroll-to-top profiles reference Site ids "
+                                "that no longer exist: %(ids)s."
+                            )
+                            % {"ids": ", ".join(dangling)}
+                        ),
+                        hint=str(
+                            _(
+                                "Point each profile at an existing Site, clear its "
+                                "Site id to make it the global profile, or delete it."
+                            )
+                        ),
+                        id="dstt.W011",
+                    )
+                )
+
+    # dstt.W012: a profile is enabled but has nothing published to render.
+    unpublished = sorted(
+        profile["name"]
+        for profile in profiles
+        if profile["is_enabled"] and profile["published_revision"] is None
+    )
+    if unpublished:
+        messages.append(
+            Info(
+                str(
+                    _(
+                        "django-scroll-to-top has enabled profiles without a "
+                        "published revision: %(names)s."
+                    )
+                    % {"names": ", ".join(unpublished)}
+                ),
+                hint=str(
+                    _(
+                        "Publish a revision for each profile or disable it. Until "
+                        "then resolution falls back to the global profile or the "
+                        "built-in defaults."
+                    )
+                ),
+                id="dstt.W012",
+            )
+        )
 
     return messages
 

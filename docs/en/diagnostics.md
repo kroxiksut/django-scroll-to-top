@@ -22,6 +22,15 @@ startup:
 | `dstt.W009` | `SITES_FRAMEWORK_ENABLED` is set but `django.contrib.sites` is not installed. |
 | `dstt.W010` | Packaged templates or minified static assets are missing. |
 
+The following are **database** checks (registered under `Tags.database`), so they
+do not run on a plain `manage.py check`; they run with `manage.py migrate` and
+`manage.py check --database default`:
+
+| Id | Reports |
+| --- | --- |
+| `dstt.W011` | A profile references a Sites Framework id that no longer exists. |
+| `dstt.W012` | A profile is enabled but has no published revision (info). |
+
 ## Management commands
 
 ```console

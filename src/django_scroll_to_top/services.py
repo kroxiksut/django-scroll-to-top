@@ -1,9 +1,16 @@
 """Configuration lifecycle services for scroll-to-top profiles and revisions.
 
 These functions own the draft/publish/archive transitions described in the
-roadmap. Publication and rollback are atomic, published revisions are treated as
-immutable snapshots, and every transition invalidates the resolved-configuration
-cache through the resolver layer.
+roadmap. Publication and rollback are atomic. Draft and published revisions are
+editable in place — editing a published revision updates the live configuration
+directly; only archived revisions are immutable snapshots kept for rollback
+(enforced in ``ScrollTopRevision.clean``). Every transition invalidates the
+resolved-configuration cache through the resolver layer.
+
+Known limitation (0.x): because the published revision is editable, a change to
+it goes live immediately with no separate draft step. This is intentional for
+now and slated for review before 1.0 (make published immutable + always edit a
+draft cloned via ``create_draft_from_revision``). See ARCHITECTURE.md.
 """
 
 from __future__ import annotations
