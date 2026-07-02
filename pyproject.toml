@@ -58,7 +58,7 @@ Issues = "https://github.com/kroxiksut/django-scroll-to-top/issues"
 
 [project.optional-dependencies]
 test = [
-    "pytest>=8,<9",
+    "pytest>=8,<10",
     "pytest-django>=4.8,<5",
 ]
 dev = [
