@@ -9,6 +9,42 @@ between minor releases.
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-07-01
+
+### Added
+
+- Admin **Create starter configuration** button on the scroll-to-top profiles
+  list: one click creates and publishes a default profile plus revision for the
+  site and admin scopes, so a fresh install no longer shows three empty admin
+  sections next to a button that is already visible on the page. The action is
+  idempotent and only fills scopes that have nothing published yet.
+- A **collapsible admin menu**: the scroll-to-top group in the admin's left
+  navigation sidebar can be folded away with a small toggle (its three items
+  only — other apps and the footer control are untouched), and the collapsed
+  state is remembered in the browser. Progressive enhancement only — it reads
+  the standard admin DOM and never restyles global admin elements.
+- Human-readable messages when a uniqueness rule would be violated instead of a
+  raw `Constraint "…" is violated` error: for duplicate profiles (one global
+  profile per scope, one profile per scope and Site) and for a second published
+  revision on the same profile.
+- Supply-chain hardening for CI: a Dependabot config (pip, npm, and GitHub
+  Actions, weekly) plus every GitHub Action pinned to a commit SHA with a
+  version comment, so action updates are reviewed rather than floating on a
+  mutable tag.
+
+### Changed
+
+- The live revision is now derived from revision **status** (a single source of
+  truth) instead of a stored `ScrollTopProfile.published_revision` pointer,
+  removing the mutual profile↔revision link. Publishing a revision with the
+  **Publish selected revision** action is the only step needed to make it live;
+  you no longer edit the profile to attach a revision by hand. A data migration
+  preserves each existing installation's currently-live revision, and a partial
+  unique constraint enforces at most one published revision per profile.
+- The profile add form no longer shows an unusable, always-empty "Published
+  revision" field; the live revision appears as a read-only link derived from
+  status.
+
 ## [0.2.0] - 2026-06-28
 
 ### Added

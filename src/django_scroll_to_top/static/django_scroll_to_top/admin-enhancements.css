@@ -1,0 +1,66 @@
+/*
+ * Admin enhancements for django-scroll-to-top.
+ *
+ * Loaded on every admin page (via templates/admin/base_site.html). Everything
+ * here is namespaced (dstt-*) and scoped to this app's own group in the left
+ * navigation sidebar, so it never styles global admin elements. Two features:
+ *   1. A collapse toggle for this app's three items in the left nav sidebar.
+ *   2. Styling for the "Create starter configuration" button on the profile
+ *      changelist.
+ */
+
+/* --- 1. Collapsible app group (left navigation sidebar only) ------------ */
+
+#nav-sidebar .dstt-nav-toggle {
+  float: right;
+  margin-left: 8px;
+  padding: 0 2px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: 1;
+  cursor: pointer;
+}
+
+#nav-sidebar .dstt-nav-toggle::before {
+  content: "\25BE"; /* ▾ expanded */
+}
+
+#nav-sidebar .app-django_scroll_to_top.dstt-nav-collapsed .dstt-nav-toggle::before {
+  content: "\25B8"; /* ▸ collapsed */
+}
+
+/* Hide only this app's model rows (not the caption) while collapsed. The
+   sidebar renders each app as a <table> with a caption plus one row per model,
+   so this leaves the group header (and its toggle) visible and every other
+   app's group untouched. */
+#nav-sidebar .app-django_scroll_to_top.dstt-nav-collapsed table tr {
+  display: none;
+}
+
+/* --- 2. Starter-configuration button ------------------------------------ */
+
+ul.object-tools li form {
+  display: inline;
+  margin: 0;
+}
+
+.dstt-starter-button {
+  display: inline-block;
+  padding: 3px 10px;
+  border: 0;
+  border-radius: 4px;
+  background: var(--object-tools-bg, #79aec8);
+  color: var(--object-tools-fg, #fff);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-transform: none;
+  cursor: pointer;
+}
+
+.dstt-starter-button:hover,
+.dstt-starter-button:focus {
+  background: var(--object-tools-hover-bg, #417690);
+}

@@ -8,14 +8,49 @@ registers three models:
 
 - **Scroll-to-top profiles** (`ScrollTopProfile`) — one coordination record per
   scope and optional Site. It owns the scope (`site` / `admin`), an optional
-  Sites Framework `site_id`, the business `is_enabled` flag, and a pointer to the
-  currently published revision.
+  Sites Framework `site_id`, and the business `is_enabled` flag. The profile's
+  live revision is derived from revision status (the revision with status
+  **Published** for that profile), not a stored pointer, so you never link a
+  revision to a profile by hand.
 - **Scroll-to-top revisions** (`ScrollTopRevision`) — the full visual and
   behavioral snapshot plus a `draft` / `published` / `archived` status.
 - **Uploaded scroll-to-top icons** (`ScrollTopUploadedIcon`) — sanitized SVG
   uploads with mandatory license/attribution metadata.
 
 ![The scroll-to-top section in the Django admin index](../assets/en/1-admin-menu.png)
+
+## First run: why the admin looks empty
+
+On a fresh install the control already renders on the page from **safe built-in
+defaults**, while all three admin sections are empty because nothing has been
+configured yet. That is expected, not a bug — there is no seed data.
+
+To move from the defaults to your own configuration, either:
+
+- Click **Create starter configuration** on the Scroll-to-top profiles list.
+  One click creates and publishes a default profile plus revision for the site
+  and admin scopes, so the admin now mirrors the button that is already visible.
+  The button is idempotent and only fills scopes that have nothing published.
+- Or do it by hand: create a **profile**, create a **revision** and set its
+  profile, then select the revision in the list and run **Publish selected
+  revision**. Publishing is the only step that makes a revision live — you do
+  not edit the profile afterwards.
+
+Either path leaves you with one published revision per scope holding the safe
+built-in defaults. From there the appearance and behavior of the control are
+shaped on the **revision**, not the profile: open the published revision and
+edit its fields to configure how the button looks and behaves on the site and
+in the admin — shape, colors, sizing, icon, placement, visibility, and
+collision handling. See [Presentation](./presentation.md) and
+[Behavior and runtime](./runtime.md) for the individual fields.
+
+If the three-item menu feels noisy, use the small **collapse toggle** on the
+scroll-to-top group in the admin's left navigation sidebar (visible on model
+list/detail pages); it folds away just those three items and stays collapsed
+(per browser) until you expand it again. Other apps and the footer control are
+not affected.
+
+![The scroll-to-top group collapsed in the admin sidebar](../assets/en/1.1-admin-menu-collapsed.png)
 
 ## Scopes and profiles
 
@@ -52,7 +87,7 @@ actions on the revision list:
 
 | Admin action | Service | Effect |
 | --- | --- | --- |
-| **Publish selected revision** | `publish_revision` | Atomically publishes the revision and archives the previously published one; updates the profile pointer and invalidates the scope cache. |
+| **Publish selected revision** | `publish_revision` | Atomically publishes the revision (status becomes the profile's live revision) and archives the previously published one; invalidates the scope cache. |
 | **Create draft from selected revision** | `create_draft_from_revision` | Clones the snapshot fields into a fresh editable draft (lifecycle/bookkeeping fields are re-derived). |
 | **Roll back by re-publishing selected revision** | `rollback_to_revision` | Re-publishes an existing (typically archived) revision. |
 

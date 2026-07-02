@@ -485,6 +485,48 @@ def test_admin_login_page_can_opt_in_to_scroll_to_top(db) -> None:
     assert 'class="dstt-control"' in response.content.decode("utf-8")
 
 
+def test_profile_changelist_shows_starter_button(admin_client: Client) -> None:
+    response = admin_client.get(
+        reverse("admin:django_scroll_to_top_scrolltopprofile_changelist")
+    )
+
+    assert response.status_code == 200
+    content = response.content.decode("utf-8")
+    assert "Create starter configuration" in content
+    assert (
+        reverse("admin:django_scroll_to_top_scrolltopprofile_create_starter")
+        in content
+    )
+
+
+def test_create_starter_view_seeds_published_config(admin_client: Client) -> None:
+    from django_scroll_to_top.services import resolve_published_revision
+
+    url = reverse("admin:django_scroll_to_top_scrolltopprofile_create_starter")
+
+    response = admin_client.post(url)
+
+    assert response.status_code == 302
+    assert resolve_published_revision(scope="site") is not None
+    assert resolve_published_revision(scope="admin") is not None
+
+
+def test_create_starter_view_ignores_get(admin_client: Client) -> None:
+    url = reverse("admin:django_scroll_to_top_scrolltopprofile_create_starter")
+
+    response = admin_client.get(url)
+
+    assert response.status_code == 302
+    assert not ScrollTopProfile.objects.exists()
+
+
+def test_admin_index_includes_nav_enhancement_asset(admin_client: Client) -> None:
+    response = admin_client.get(reverse("admin:index"))
+
+    assert response.status_code == 200
+    assert "admin-enhancements.js" in response.content.decode("utf-8")
+
+
 def _change_url(pk: int) -> str:
     return reverse(
         "admin:django_scroll_to_top_scrolltoprevision_change",

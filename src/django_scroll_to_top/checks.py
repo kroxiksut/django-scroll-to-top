@@ -206,19 +206,27 @@ def django_scroll_to_top_database_checks(app_configs, **kwargs):
     messages: list = []
 
     try:
-        from django_scroll_to_top.models import ScrollTopProfile
+        from django_scroll_to_top.models import ScrollTopProfile, ScrollTopRevision
     except (ModuleNotFoundError, ImproperlyConfigured):
         return messages
 
     try:
         profiles = list(
             ScrollTopProfile.objects.values(
+                "id",
                 "scope",
                 "site_id",
                 "name",
                 "is_enabled",
-                "published_revision",
             )
+        )
+        # The live revision is derived from status, so a profile "has something
+        # published" when it owns a revision with status="published".
+        published_profile_ids = set(
+            ScrollTopRevision.objects.filter(
+                status=ScrollTopRevision.STATUS_PUBLISHED,
+                profile__isnull=False,
+            ).values_list("profile_id", flat=True)
         )
     except (OperationalError, ProgrammingError):
         # Tables are not migrated yet; dstt.W001/W002 already report that.
@@ -268,7 +276,7 @@ def django_scroll_to_top_database_checks(app_configs, **kwargs):
     unpublished = sorted(
         profile["name"]
         for profile in profiles
-        if profile["is_enabled"] and profile["published_revision"] is None
+        if profile["is_enabled"] and profile["id"] not in published_profile_ids
     )
     if unpublished:
         messages.append(

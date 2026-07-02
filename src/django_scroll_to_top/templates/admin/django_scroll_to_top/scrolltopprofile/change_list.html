@@ -1,0 +1,24 @@
+{% extends "admin/change_list.html" %}
+{% load i18n %}
+
+{% comment %}
+  Adds a "Create starter configuration" button to the profile changelist.
+  A fresh install renders the control from built-in defaults but shows an empty
+  admin, which reads as "broken". This one click seeds a profile + published
+  revision per scope so the admin mirrors the button that is already visible.
+  The POST target is namespaced and CSRF-protected; the action is idempotent.
+{% endcomment %}
+{% block object-tools-items %}
+  {% if has_add_permission %}
+    <li>
+      <form method="post"
+            action="{% url 'admin:django_scroll_to_top_scrolltopprofile_create_starter' %}">
+        {% csrf_token %}
+        <button type="submit" class="dstt-starter-button">
+          {% translate "Create starter configuration" %}
+        </button>
+      </form>
+    </li>
+  {% endif %}
+  {{ block.super }}
+{% endblock %}

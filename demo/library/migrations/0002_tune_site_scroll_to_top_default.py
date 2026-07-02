@@ -63,16 +63,19 @@ def forwards(apps, schema_editor) -> None:
         defaults=SITE_PROFILE_DEFAULTS,
     )
 
-    revision = profile.published_revision
+    # The live revision is derived from status, not a stored pointer, so this
+    # stays valid regardless of when the package's pointer-removal migration
+    # runs relative to this one.
+    revision = ScrollTopRevision.objects.filter(
+        profile=profile, status=published_status
+    ).first()
     if revision is None:
-        revision = ScrollTopRevision.objects.create(
+        ScrollTopRevision.objects.create(
             profile=profile,
             status=published_status,
             published_at=timezone.now(),
             **SITE_REVISION_DEFAULTS,
         )
-        profile.published_revision = revision
-        profile.save(update_fields=["published_revision"])
         return
 
     changed_fields: list[str] = []
@@ -80,17 +83,11 @@ def forwards(apps, schema_editor) -> None:
         if getattr(revision, field_name) != value:
             setattr(revision, field_name, value)
             changed_fields.append(field_name)
-    if revision.status != published_status:
-        revision.status = published_status
-        changed_fields.append("status")
     if revision.published_at is None:
         revision.published_at = timezone.now()
         changed_fields.append("published_at")
     if changed_fields:
         revision.save(update_fields=changed_fields)
-    if profile.published_revision_id != revision.pk:
-        profile.published_revision = revision
-        profile.save(update_fields=["published_revision"])
 
 
 def backwards(apps, schema_editor) -> None:

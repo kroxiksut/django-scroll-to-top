@@ -7,6 +7,7 @@ from django.db import IntegrityError, transaction
 from django_scroll_to_top.models import ScrollTopProfile, ScrollTopRevision
 from django_scroll_to_top.services import (
     create_draft_from_revision,
+    create_starter_configuration,
     publish_revision,
     resolve_profile,
     resolve_published_revision,
@@ -26,17 +27,17 @@ def _draft(profile, **fields) -> ScrollTopRevision:
     )
 
 
-def test_publish_sets_pointer_status_and_timestamp(db) -> None:
+def test_publish_sets_status_and_timestamp(db) -> None:
     profile = _profile()
     revision = _draft(profile, shape="square")
 
     publish_revision(revision)
 
     revision.refresh_from_db()
-    profile.refresh_from_db()
     assert revision.status == ScrollTopRevision.STATUS_PUBLISHED
     assert revision.published_at is not None
-    assert profile.published_revision_id == revision.pk
+    # The live revision is derived from status, not a stored pointer.
+    assert resolve_published_revision(scope="site").pk == revision.pk
 
 
 def test_publishing_archives_previous_published_revision(db) -> None:
@@ -50,9 +51,8 @@ def test_publishing_archives_previous_published_revision(db) -> None:
     publish_revision(second)
 
     first.refresh_from_db()
-    profile.refresh_from_db()
     assert first.status == ScrollTopRevision.STATUS_ARCHIVED
-    assert profile.published_revision_id == second.pk
+    assert resolve_published_revision(scope="site").pk == second.pk
 
 
 def test_create_draft_clones_snapshot_fields(db) -> None:
@@ -113,10 +113,9 @@ def test_rollback_republishes_archived_revision(db) -> None:
 
     original.refresh_from_db()
     newer.refresh_from_db()
-    profile.refresh_from_db()
     assert original.status == ScrollTopRevision.STATUS_PUBLISHED
     assert newer.status == ScrollTopRevision.STATUS_ARCHIVED
-    assert profile.published_revision_id == original.pk
+    assert resolve_published_revision(scope="site").pk == original.pk
 
 
 def test_resolve_profile_prefers_site_specific_over_global(db) -> None:
@@ -143,3 +142,24 @@ def test_unique_global_profile_per_scope(db) -> None:
     _profile(name="first")
     with pytest.raises(IntegrityError), transaction.atomic():
         _profile(name="second")
+
+
+def test_only_one_published_revision_per_profile(db) -> None:
+    profile = _profile()
+    ScrollTopRevision.objects.create(
+        profile=profile, name="a", status=ScrollTopRevision.STATUS_PUBLISHED
+    )
+    with pytest.raises(IntegrityError), transaction.atomic():
+        ScrollTopRevision.objects.create(
+            profile=profile, name="b", status=ScrollTopRevision.STATUS_PUBLISHED
+        )
+
+
+def test_create_starter_configuration_seeds_both_scopes(db) -> None:
+    created = create_starter_configuration()
+
+    assert set(created) == {"Site default", "Admin default"}
+    assert resolve_published_revision(scope="site") is not None
+    assert resolve_published_revision(scope="admin") is not None
+    # Idempotent: a second call finds a published config for every scope.
+    assert create_starter_configuration() == []

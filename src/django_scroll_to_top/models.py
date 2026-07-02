@@ -68,14 +68,9 @@ class ScrollTopProfile(models.Model):
         verbose_name=_("Enabled"),
         help_text=_("Business decision to show the control for this scope now."),
     )
-    published_revision = models.ForeignKey(
-        "django_scroll_to_top.ScrollTopRevision",
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name="+",
-        verbose_name=_("Published revision"),
-    )
+    # The live revision is derived from revision status (the single source of
+    # truth), not from a stored pointer: a profile's published revision is the
+    # one ScrollTopRevision with status="published" for that profile.
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name=_("Created at")
     )
@@ -89,11 +84,21 @@ class ScrollTopProfile(models.Model):
                 fields=["scope", "site_id"],
                 condition=Q(site_id__isnull=False),
                 name="dstt_unique_scope_site",
+                violation_error_message=_(
+                    "A scroll-to-top profile for this scope and Site already "
+                    "exists. Edit that profile, pick a different Site, or clear "
+                    "the Site ID to use the global profile."
+                ),
             ),
             models.UniqueConstraint(
                 fields=["scope"],
                 condition=Q(site_id__isnull=True),
                 name="dstt_unique_scope_global",
+                violation_error_message=_(
+                    "A global scroll-to-top profile for this scope already "
+                    "exists. Edit the existing profile, or set a Site ID to "
+                    "target a specific site."
+                ),
             ),
         ]
 
@@ -727,6 +732,21 @@ class ScrollTopRevision(models.Model):
     class Meta:
         verbose_name = _("Scroll-to-top revision")
         verbose_name_plural = _("Scroll-to-top revisions")
+        constraints = [
+            # The live configuration is derived from status, so at most one
+            # revision per profile may be published at a time. Publishing a new
+            # revision archives the previous one (see services.publish_revision).
+            models.UniqueConstraint(
+                fields=["profile"],
+                condition=Q(status="published"),
+                name="dstt_unique_published_per_profile",
+                violation_error_message=_(
+                    "This profile already has a published revision. Publishing "
+                    "another one archives the previous automatically, so you do "
+                    "not need to unpublish first."
+                ),
+            ),
+        ]
 
     def __str__(self) -> str:
         return self.name

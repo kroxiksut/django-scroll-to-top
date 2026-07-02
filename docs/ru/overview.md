@@ -39,10 +39,10 @@
   (и `{% scroll_to_top scope="admin" %}`) в `templatetags/scroll_to_top.py`.
   Визуальных аргументов у тега нет.
 - **Модель данных** (`models.py`) — `ScrollTopProfile` (область `site`/`admin`,
-  необязательный `site_id` Sites Framework, `is_enabled`, указатель на
-  опубликованную ревизию), `ScrollTopRevision` (полный снимок внешнего вида и
-  поведения со статусом `draft`/`published`/`archived`) и
-  `ScrollTopUploadedIcon`.
+  необязательный `site_id` Sites Framework, `is_enabled`; «живая» ревизия
+  определяется по статусу ревизии, а не по хранимому указателю),
+  `ScrollTopRevision` (полный снимок внешнего вида и поведения со статусом
+  `draft`/`published`/`archived`) и `ScrollTopUploadedIcon`.
 - **Сервисы жизненного цикла** (`services.py`) — атомарные `publish_revision`,
   `create_draft_from_revision`, `rollback_to_revision`, а также разрешение
   профиля и опубликованной ревизии.

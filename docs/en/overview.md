@@ -38,9 +38,10 @@ control still renders from safe built-in defaults.
   `{% scroll_to_top scope="admin" %}`) in `templatetags/scroll_to_top.py`. No
   visual template-tag arguments.
 - **Data model** (`models.py`) — `ScrollTopProfile` (scope `site`/`admin`,
-  optional Sites Framework `site_id`, `is_enabled`, published-revision pointer),
-  `ScrollTopRevision` (full visual/behavioral snapshot with
-  `draft`/`published`/`archived` status), and `ScrollTopUploadedIcon`.
+  optional Sites Framework `site_id`, `is_enabled`; the live revision is derived
+  from revision status, not a stored pointer), `ScrollTopRevision` (full
+  visual/behavioral snapshot with `draft`/`published`/`archived` status), and
+  `ScrollTopUploadedIcon`.
 - **Lifecycle services** (`services.py`) — atomic `publish_revision`,
   `create_draft_from_revision`, `rollback_to_revision`, and profile/published
   revision resolution.

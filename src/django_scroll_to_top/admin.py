@@ -5,7 +5,11 @@ from dataclasses import dataclass
 
 from django import forms
 from django.contrib import admin, messages
+from django.core.exceptions import PermissionDenied
 from django.http import HttpRequest, HttpResponse
+from django.shortcuts import redirect
+from django.urls import path, reverse
+from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
@@ -29,6 +33,7 @@ from django_scroll_to_top.models import (
 )
 from django_scroll_to_top.services import (
     create_draft_from_revision,
+    create_starter_configuration,
     publish_revision,
     rollback_to_revision,
 )
@@ -179,8 +184,8 @@ class ScrollTopRevisionAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         for field_name in self.COLOR_FIELD_NAMES:
-            # Published/archived revisions render every field read-only, so the
-            # editable color widgets may be absent from the form.
+            # Archived revisions render every field read-only, so the editable
+            # color widgets may be absent from the form.
             if field_name not in self.fields:
                 continue
             field = self.fields[field_name]
@@ -961,16 +966,19 @@ class ScrollTopUploadedIconAdmin(admin.ModelAdmin):
 
 @admin.register(ScrollTopProfile)
 class ScrollTopProfileAdmin(admin.ModelAdmin):
+    change_list_template = (
+        "admin/django_scroll_to_top/scrolltopprofile/change_list.html"
+    )
     list_display = (
         "name",
         "scope",
         "site_id",
         "is_enabled",
-        "published_revision",
+        "published_revision_display",
         "updated_at",
     )
     list_filter = ("scope", "is_enabled")
-    readonly_fields = ("created_at", "updated_at")
+    readonly_fields = ("published_revision_display", "created_at", "updated_at")
     fieldsets = (
         (
             _("Identity"),
@@ -978,7 +986,15 @@ class ScrollTopProfileAdmin(admin.ModelAdmin):
         ),
         (
             _("Publication"),
-            {"fields": ("published_revision",)},
+            {
+                "fields": ("published_revision_display",),
+                "description": _(
+                    "The live revision is the one with status “Published” for "
+                    "this profile. To change it, open the Scroll-to-top "
+                    "revisions list, select a revision, and run “Publish "
+                    "selected revision”."
+                ),
+            },
         ),
         (
             _("Metadata"),
@@ -986,15 +1002,56 @@ class ScrollTopProfileAdmin(admin.ModelAdmin):
         ),
     )
 
-    def formfield_for_foreignkey(self, db_field, request, **kwargs):
-        # Only revisions belonging to this profile are valid publish targets.
-        if db_field.name == "published_revision":
-            match = request.resolver_match
-            object_id = match.kwargs.get("object_id") if match else None
-            if object_id is not None:
-                kwargs["queryset"] = ScrollTopRevision.objects.filter(
-                    profile_id=object_id
-                )
-            else:
-                kwargs["queryset"] = ScrollTopRevision.objects.none()
-        return super().formfield_for_foreignkey(db_field, request, **kwargs)
+    @admin.display(description=_("Published revision"))
+    def published_revision_display(self, obj: ScrollTopProfile) -> str:
+        if obj.pk is None:
+            return "—"
+        revision = ScrollTopRevision.objects.filter(
+            profile=obj,
+            status=ScrollTopRevision.STATUS_PUBLISHED,
+        ).first()
+        if revision is None:
+            return str(_("None published yet"))
+        url = reverse(
+            "admin:django_scroll_to_top_scrolltoprevision_change",
+            args=[revision.pk],
+        )
+        return format_html('<a href="{}">{}</a>', url, revision.name)
+
+    def get_urls(self):
+        urls = super().get_urls()
+        custom = [
+            path(
+                "create-starter/",
+                self.admin_site.admin_view(self.create_starter_view),
+                name="django_scroll_to_top_scrolltopprofile_create_starter",
+            ),
+        ]
+        return custom + urls
+
+    def create_starter_view(self, request: HttpRequest) -> HttpResponse:
+        changelist_url = reverse(
+            "admin:django_scroll_to_top_scrolltopprofile_changelist"
+        )
+        if request.method != "POST":
+            return redirect(changelist_url)
+        if not self.has_add_permission(request):
+            raise PermissionDenied
+        created = create_starter_configuration(user=request.user)
+        if created:
+            self.message_user(
+                request,
+                _("Created a starter configuration for: %(names)s.")
+                % {"names": ", ".join(created)},
+                level=messages.SUCCESS,
+            )
+        else:
+            self.message_user(
+                request,
+                _(
+                    "A published scroll-to-top configuration already exists for "
+                    "every scope; nothing to create."
+                ),
+                level=messages.INFO,
+            )
+        return redirect(changelist_url)

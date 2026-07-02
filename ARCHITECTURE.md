@@ -46,12 +46,16 @@ immutable typed payload, not an ORM object as a public renderer contract.
 
 ## Planned Data Model
 
-- `ScrollTopProfile`: scope, optional Site, stable identity, and published
-  revision reference.
+- `ScrollTopProfile`: scope, optional Site, stable identity, and the
+  business `is_enabled` flag. The profile does not store a published-revision
+  pointer; its live revision is derived from revision `status` (the single
+  `ScrollTopRevision` with `status="published"` for that profile), which keeps
+  the profile↔revision link one-directional.
 - `ScrollTopRevision`: snapshot of display, behavior, responsive, collision, and
   dismissal policy. Draft and published revisions are editable in place; editing
   a published revision updates the live configuration. Archived revisions are
-  immutable so rollback restores an exact snapshot.
+  immutable so rollback restores an exact snapshot. A partial unique constraint
+  allows at most one published revision per profile.
 - `ScrollTopIcon`: metadata for uploaded icons and references to sanitized
   normalized payloads; built-in/developer sources share the catalog contract.
 

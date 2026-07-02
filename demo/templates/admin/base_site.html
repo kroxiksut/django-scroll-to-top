@@ -36,6 +36,14 @@
   </div>
 {% endblock %}
 
+{# This demo overrides the package's admin/base_site.html, so mirror its
+   optional admin enhancements (collapsible menu group + starter-button style)
+   here as well. #}
+{% block extrahead %}{{ block.super }}
+  <link rel="stylesheet" href="{% static 'django_scroll_to_top/admin-enhancements.css' %}">
+  <script src="{% static 'django_scroll_to_top/admin-enhancements.js' %}" defer></script>
+{% endblock %}
+
 {% block footer %}
   {{ block.super }}
   {% scroll_to_top scope="admin" %}

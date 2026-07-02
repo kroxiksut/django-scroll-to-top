@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "django-scroll-to-top"
-version = "0.2.0"
+version = "0.3.0"
 description = "Accessible and configurable scroll-to-top controls for Django sites and Django Admin"
 authors = [
     { name = "kroxiksut", email = "fmalkov91@gmail.com" },
@@ -88,6 +88,7 @@ django_scroll_to_top = [
     "templates/django_scroll_to_top/includes/*.html",
     "templates/admin/base_site.html",
     "templates/admin/django_scroll_to_top/scrolltoprevision/*.html",
+    "templates/admin/django_scroll_to_top/scrolltopprofile/*.html",
     "static/django_scroll_to_top/*.css",
     "static/django_scroll_to_top/*.js",
     "static/django_scroll_to_top/*.d.ts",

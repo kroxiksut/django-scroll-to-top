@@ -31,8 +31,8 @@ python manage.py migrate django_scroll_to_top
 
 ## Краткий обзор модели данных
 
-- `ScrollTopProfile` — область, необязательный `site_id`, `is_enabled`, указатель
-  на опубликованную ревизию.
+- `ScrollTopProfile` — область, необязательный `site_id`, `is_enabled`. «Живая»
+  ревизия определяется по статусу ревизии, а не по хранимому указателю.
 - `ScrollTopRevision` — полный снимок внешнего вида/поведения со статусом
   `draft` / `published` / `archived`.
 - `ScrollTopUploadedIcon` — санитизированный SVG плюс метаданные

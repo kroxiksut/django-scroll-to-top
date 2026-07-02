@@ -365,8 +365,9 @@ def _seed_scroll_to_top_defaults(*, admin_user) -> None:
         if updates:
             profile.save(update_fields=updates)
         revision_defaults = _scroll_to_top_revision_defaults(name=name)
-        if profile.published_revision_id is not None:
-            revision = profile.published_revision
+        # The live revision is derived from status, not a stored pointer.
+        revision = profile.revisions.filter(status="published").first()
+        if revision is not None:
             revision_updates: list[str] = []
             for field_name, value in revision_defaults.items():
                 if getattr(revision, field_name) != value:
@@ -451,7 +452,8 @@ def _sync_admin_revision_to_site(
             "is_enabled": True,
         },
     )
-    site_revision = site_profile.published_revision
+    # The live revision is derived from status now, not a stored pointer.
+    site_revision = site_profile.revisions.filter(status="published").first()
     if site_revision is None:
         site_revision = ScrollTopRevision.objects.create(
             profile=site_profile,
@@ -459,8 +461,6 @@ def _sync_admin_revision_to_site(
             published_at=instance.published_at or timezone.now(),
             created_by=instance.created_by,
         )
-        site_profile.published_revision = site_revision
-        site_profile.save(update_fields=["published_revision", "updated_at"])
 
     synced_fields = [
         field.name

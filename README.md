@@ -129,6 +129,17 @@ urlpatterns = [
 ]
 ```
 
+> **First run.** After `migrate` the control already renders from safe built-in
+> defaults, so the three admin sections start empty — that is expected, not a
+> bug. To customize, click **Create starter configuration** on the Scroll-to-top
+> profiles list (one click seeds and publishes a default profile + revision per
+> scope), or create a profile, add a revision, and run **Publish selected
+> revision**. Either way you then shape the control's actual appearance and
+> behavior by editing the published **revision** (shape, colors, sizing, icon,
+> placement, visibility) — not the profile. The three-item admin menu can also be
+> collapsed with a toggle in the left admin sidebar. See
+> [operations-admin](docs/en/operations-admin.md).
+
 The package supports and tests the standard Django Admin templates on the
 documented Django compatibility matrix. The integration uses documented Django
 extension points, preserves standard branding, and avoids monkeypatching private

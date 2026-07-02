@@ -31,8 +31,8 @@ deploys.
 
 ## Data model recap
 
-- `ScrollTopProfile` — scope, optional `site_id`, `is_enabled`, published-revision
-  pointer.
+- `ScrollTopProfile` — scope, optional `site_id`, `is_enabled`. The live
+  revision is derived from revision status, not a stored pointer.
 - `ScrollTopRevision` — full visual/behavioral snapshot with
   `draft` / `published` / `archived` status.
 - `ScrollTopUploadedIcon` — sanitized SVG plus license/attribution metadata.
