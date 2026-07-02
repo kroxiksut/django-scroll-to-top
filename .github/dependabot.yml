@@ -29,6 +29,14 @@ updates:
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 5
+    # One grouped PR for all action bumps. This keeps multi-step actions in
+    # lockstep — notably github/codeql-action init + analyze, which fail at
+    # runtime ("Loaded a configuration file for version X, but running Y") if
+    # they are ever pinned to different versions.
+    groups:
+      github-actions:
+        patterns:
+          - "*"
     labels:
       - "dependencies"
       - "github-actions"
