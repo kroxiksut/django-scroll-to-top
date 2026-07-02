@@ -64,7 +64,7 @@ test = [
 dev = [
     "ruff>=0.11,<1",
     "pyright>=1.1.390,<2",
-    "django-stubs>=4.2,<6",
+    "django-stubs>=4.2,<7",
     "build>=1.2,<2",
     "twine>=5,<7",
 ]
