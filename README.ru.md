@@ -12,6 +12,7 @@
   <a href="https://pypi.org/project/django-scroll-to-top/"><img src="https://img.shields.io/pypi/v/django-scroll-to-top.svg" alt="Версия на PyPI"></a>
   <a href="https://pypi.org/project/django-scroll-to-top/"><img src="https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13%20%7C%203.14-blue.svg" alt="Версии Python"></a>
   <a href="https://www.djangoproject.com/"><img src="https://img.shields.io/badge/Django-4.2%20LTS%20%7C%205.x%20%7C%206.0-092E20.svg?logo=django&logoColor=white" alt="Версии Django"></a>
+  <a href="https://djangopackages.org/packages/p/django-scroll-to-top/"><img src="https://img.shields.io/badge/PyPI-django--scroll--to--top--tags-8c3c26.svg" alt="Актуальная версия на Django Packages"></a>
 </p>
 
 <p align="center">
